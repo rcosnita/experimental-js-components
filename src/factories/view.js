@@ -5,9 +5,20 @@ define(["jquery", "utils/constants"], function($, Constants) {
      * @description
      * This class provides the view foundation which can be used by all custom components.
      */
-    function View(body) {
-        this.body = body;
+    function View(template) {
+        this._template = template;
     }
+
+    /**
+     * @public
+     * @instance
+     * @method
+     * @description
+     * This method renders the current view using data from the given model.
+     */
+    View.prototype.render = function(model) {
+        return this._template;
+    };
 
     /**
      * @constructor

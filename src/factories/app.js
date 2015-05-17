@@ -51,6 +51,8 @@ define(["jquery", "utils/constants"], function($, Constants) {
             comp.config.parentApp = self;
             self.components[sid] = comp;
 
+            elem.append(comp.config.view.render(comp.config.model));
+
             comp.start();
         });
 
