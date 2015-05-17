@@ -1,11 +1,12 @@
 requirejs.config({
     baseUrl: "../",
     paths: {
-        "jquery": "../../lib/jquery-2.1.4",
+        "jquery": "../../../lib/jquery-2.1.4",
         "models": "../../models",
         "components": "../../components",
-        "controllers": "controllers"
+        "controllers": "controllers",
+        "factories": "../../factories"
     }
 });
 
-requirejs(["controllers/index"]);
+requirejs(["factories/app!controllers/index"]);
