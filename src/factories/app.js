@@ -47,8 +47,8 @@ define(["jquery", "utils/constants"], function($, Constants) {
             self = this;
 
         req([compLoadId], function(comp) {
-            elem.append(comp.config.view);
-
+            comp.config.view.element = elem;
+            comp.config.parentApp = self;
             self.components[sid] = comp;
 
             comp.start();

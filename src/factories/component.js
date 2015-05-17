@@ -5,9 +5,7 @@ define(["jquery", "utils/constants"], function($, Constants) {
      * @description
      * This class provides the foundation for each component available into framework.
      */
-    function Component() {
-
-    };
+    function Component() {};
 
     /**
      * @constructor

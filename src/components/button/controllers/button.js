@@ -1,4 +1,4 @@
-define(function() {
+define(["factories/view!button:index.html"], function(view) {
     /**
      * @constructor
      * @public
@@ -9,7 +9,7 @@ define(function() {
         console.log("Button controller instantiated.");
 
         this.config = {
-            "view": "<p>Hello to a wonderful button.</p>"
+            "view": view
         };
     };
 
@@ -21,7 +21,8 @@ define(function() {
      * This method is invoked automatically by the framework in order to let the component to wire it's functionality. 
      At this stage, the component view is already binded to dom and works as expected.
      */
-    Button.prototype.start = function() { };
+    Button.prototype.start = function() { 
+    };
 
     return Button;
 });
