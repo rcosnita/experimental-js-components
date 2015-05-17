@@ -5,7 +5,8 @@ requirejs.config({
         "models": "../../models",
         "components": "../../components",
         "controllers": "controllers",
-        "factories": "../../factories"
+        "factories": "../../factories",
+        "utils": "../../utils"
     }
 });
 

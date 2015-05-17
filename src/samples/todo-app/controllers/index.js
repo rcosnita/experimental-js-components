@@ -10,7 +10,9 @@ define(function() {
 
         this.config = {
             "selector": "div[data-sid='todo-app']",
-            "dropdown-list-tasktypes": {}
+            "components": {
+                "btn-refresh": {}
+            }
         };
     };
 
@@ -20,8 +22,8 @@ define(function() {
      * @description
      * This method is invoked automatically when application starts.
      */
-    TodoApp.prototype.start = function() {
-        console.log(this.config);
+    TodoApp.prototype.start = function() { 
+        console.log(this.components.root);
     };
 
     return TodoApp;
