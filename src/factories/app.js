@@ -15,16 +15,19 @@ define(["jquery", "utils/constants"], function($, Constants) {
      * This method is used to bind the app root context and loads all children subcomponents. All physical bindings
      * are saved into components attribute.
      */ 
-    App.prototype._bindRootContext = function() {
-        var self = this;
+    App.prototype._bindRootContext = function(req) {
+        var compLoaders = [],
+            self = this;
 
         this.components = {
             "root": $(this.config.selector)
         };
 
         $("*[data-comp-type]").each(function(elem, elemValue) {
-            self._createComponent($(elemValue));
+            compLoaders.push(self._createComponent(req, $(elemValue)));
         });
+
+        return compLoaders;
     };
 
 
@@ -36,12 +39,22 @@ define(["jquery", "utils/constants"], function($, Constants) {
      * @description
      * This method is responsible for transforming the given element into a component and bind it's controller to components namespace.
      */
-    App.prototype._createComponent = function(elem) {
+    App.prototype._createComponent = function(req, elem) {
         var sid = elem.attr(Constants.COMPONENT_SID_ATTR_NAME),
-            compType = elem.attr(Constants.COMPONENT_TYPE_ATTR_NAME);
+            compType = elem.attr(Constants.COMPONENT_TYPE_ATTR_NAME),
+            compLoadId = ["factories/component!", compType].join(""),
+            loadPromise = $.Deferred(),
+            self = this;
 
-        console.log(sid);
-        console.log(compType);
+        req([compLoadId], function(comp) {
+            elem.append(comp.config.view);
+
+            self.components[sid] = comp;
+
+            comp.start();
+        });
+
+        return loadPromise.promise();
     };
 
 
@@ -66,12 +79,13 @@ define(["jquery", "utils/constants"], function($, Constants) {
 
             $.extend(app, new App());
 
-            onload(app);
-
             $(document).ready(function() {
-                app._bindRootContext();
+                var loaders = app._bindRootContext(req);
 
-                app.start();
+                $.when($, loaders).then(function() {
+                    app.start();
+                    onload(app);
+                });
             });
         });
     };

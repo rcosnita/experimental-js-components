@@ -4,7 +4,6 @@ requirejs.config({
         "jquery": "../../../lib/jquery-2.1.4",
         "models": "../../models",
         "components": "../../components",
-        "controllers": "controllers",
         "factories": "../../factories",
         "utils": "../../utils"
     }

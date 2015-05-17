@@ -22,9 +22,7 @@ define(function() {
      * @description
      * This method is invoked automatically when application starts.
      */
-    TodoApp.prototype.start = function() { 
-        console.log(this.components.root);
-    };
+    TodoApp.prototype.start = function() { };
 
     return TodoApp;
 });
