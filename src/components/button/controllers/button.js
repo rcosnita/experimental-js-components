@@ -1,4 +1,4 @@
-define(["factories/view!button:index.html"], function(view) {
+define(["factories/view!button:index.html", "bootstrap"], function(view) {
     /**
      * @constructor
      * @public

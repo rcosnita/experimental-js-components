@@ -1,4 +1,5 @@
-define(["jquery", "utils/constants"], function($, Constants) {
+define(["jquery", "handlebars", "utils/constants"], 
+    function($, Handlebars, Constants) {
     /**
      * @constructor
      * @public
@@ -6,7 +7,8 @@ define(["jquery", "utils/constants"], function($, Constants) {
      * This class provides the view foundation which can be used by all custom components.
      */
     function View(template) {
-        this._template = template;
+        this._templateText = template;
+        this._template = Handlebars.compile(this._templateText);
     }
 
     /**
@@ -17,7 +19,9 @@ define(["jquery", "utils/constants"], function($, Constants) {
      * This method renders the current view using data from the given model.
      */
     View.prototype.render = function(model) {
-        return this._template;
+        model = model || {};
+
+        return this._template(model);
     };
 
     /**
