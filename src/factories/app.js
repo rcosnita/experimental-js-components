@@ -50,11 +50,14 @@ define(["jquery", "utils/constants"], function($, Constants) {
             comp.config.view.element = elem;
             comp.config.view.component = comp;
             comp.config.parentApp = self;
+
             self.components[sid] = comp;
 
             elem.append(comp.config.view.render(comp.config.model));
 
             comp.start();
+
+            loadPromise.resolve();
         });
 
         return loadPromise.promise();
@@ -83,9 +86,10 @@ define(["jquery", "utils/constants"], function($, Constants) {
             $.extend(app, new App());
 
             $(document).ready(function() {
-                var loaders = app._bindRootContext(req);
+                var loaders = app._bindRootContext(req),
+                    resolvedLoaders = 0;
 
-                $.when($, loaders).then(function() {
+                $.when.apply($, loaders).then(function() {
                     app.start();
                     onload(app);
                 });

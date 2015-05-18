@@ -9,10 +9,7 @@ define(function() {
         console.log("Todo App instantiated.");
 
         this.config = {
-            "selector": "div[data-sid='todo-app']",
-            "components": {
-                "btn-refresh": {}
-            }
+            "selector": "div[data-sid='todo-app']"
         };
     };
 
@@ -22,7 +19,11 @@ define(function() {
      * @description
      * This method is invoked automatically when application starts.
      */
-    TodoApp.prototype.start = function() { };
+    TodoApp.prototype.start = function() { 
+        this.components["btn-refresh"].bind("click", function() {
+            alert("Works as a charm.");
+        });
+    };
 
     return TodoApp;
 });

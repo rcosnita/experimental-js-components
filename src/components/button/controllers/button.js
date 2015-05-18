@@ -1,4 +1,4 @@
-define(["factories/view!button:index.html", "bootstrap"], function(view) {
+define(["jquery", "factories/view!button:index.html", "bootstrap"], function($, view) {
     /**
      * @constructor
      * @public
@@ -21,7 +21,13 @@ define(["factories/view!button:index.html", "bootstrap"], function(view) {
      * This method is invoked automatically by the framework in order to let the component to wire it's functionality. 
      At this stage, the component view is already binded to dom and works as expected.
      */
-    Button.prototype.start = function() { 
+    Button.prototype.start = function() {
+        var view = this.config.view,
+            self = this;
+
+        $(view.element).find("button").click(function() {
+            self.trigger("click", {})
+        });
     };
 
     return Button;
