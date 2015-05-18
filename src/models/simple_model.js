@@ -14,6 +14,17 @@ define(["utils/constants"], function(Constants) {
     };
 
     /**
+     * @public
+     * @instance
+     * @method
+     * @description
+     * This method returns the current loaded data belonging to the model.
+     */
+    SimpleModel.prototype.getData = function() {
+        return this._json;
+    };
+
+    /**
      * @private
      * @instance
      * @method

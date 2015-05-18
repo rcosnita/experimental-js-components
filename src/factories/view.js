@@ -16,12 +16,15 @@ define(["jquery", "handlebars", "utils/constants"],
      * @instance
      * @method
      * @description
-     * This method renders the current view using data from the given model.
+     * This method renders the current view using data from the given model. In addition it receives the current
+     * configuration of the component which triggered the rendering.
      */
-    View.prototype.render = function(model) {
-        model = model || {};
+    View.prototype.render = function(config, modelData) {
+        modelData = modelData || {};
 
-        return this._template(model);
+        var ctx = {"config": config, "model": modelData};
+
+        return this._template(ctx);
     };
 
     /**

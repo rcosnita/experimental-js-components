@@ -38,6 +38,11 @@ define(function() {
         /**
          * @constant {String} The button click event name.
          */
-        COMPONENT_BTN_CLICK_EVENT: "btn:click"
+        COMPONENT_BTN_CLICK_EVENT: "btn:click",
+
+        /**
+         * @constant {String} The dropdopwn selected item event name.
+         */
+        COMPONENT_DD_ITEM_SELECTED: "dd:selected-item"
     };
 });

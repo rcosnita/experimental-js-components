@@ -49,14 +49,16 @@ define(["jquery", "utils/constants"], function($, Constants) {
         req([compLoadId], function(comp) {
             comp.config.view.element = elem;
             comp.config.view.component = comp;
-            comp.config.model = ((self.config.components || {})[sid] || {}).model || {};
+
+            $.extend(comp.config, (self.config.components || {})[sid] || {});
+
             comp.config.parentApp = self;
 
             self.components[sid] = comp;
 
             if(comp.config.model) {
                 comp.config.model.on(Constants.MODEL_INIT_COMPLETED_EVENT, function(modelData) {
-                    elem.append(comp.config.view.render(modelData));
+                    elem.append(comp.config.view.render(comp.config, modelData));
 
                     comp.start();
                 });
