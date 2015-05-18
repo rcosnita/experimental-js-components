@@ -1,4 +1,4 @@
-define(["jquery", "utils/constants"], function($, Constants) {
+define(["jquery", "eventemitter", "utils/constants"], function($, EventEmitter, Constants) {
     /**
      * @constructor
      * @public
@@ -30,6 +30,7 @@ define(["jquery", "utils/constants"], function($, Constants) {
             var comp = new CompClass();
 
             $.extend(comp, new Component());
+            EventEmitter.mixin(comp);
 
             onload(comp);
         });
