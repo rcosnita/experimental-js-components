@@ -54,9 +54,15 @@ define(["jquery", "utils/constants"], function($, Constants) {
 
             self.components[sid] = comp;
 
-            elem.append(comp.config.view.render(comp.config.model));
+            if(comp.config.model) {
+                comp.config.model.on(Constants.MODEL_INIT_COMPLETED_EVENT, function(modelData) {
+                    elem.append(comp.config.view.render(modelData));
 
-            comp.start();
+                    comp.start();
+                });
+
+                comp.config.model.trigger(Constants.MODEL_INIT_EVENT);
+            }            
 
             loadPromise.resolve();
         });

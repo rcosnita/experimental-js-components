@@ -1,4 +1,5 @@
-define(["jquery", "factories/view!button:index.html", "bootstrap"], function($, view) {
+define(["jquery", "factories/view!button:index.html", "utils/constants", "bootstrap"], 
+    function($, view, Constants) {
     /**
      * @constructor
      * @public
@@ -26,7 +27,7 @@ define(["jquery", "factories/view!button:index.html", "bootstrap"], function($, 
             self = this;
 
         $(view.element).find("button").click(function() {
-            self.trigger("click", {})
+            self.trigger(Constants.COMPONENT_BTN_CLICK_EVENT, {});
         });
     };
 

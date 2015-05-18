@@ -23,6 +23,21 @@ define(function() {
         /**
          * @constant {String} The dom attribute name used to define a unique identifier.
          */
-        COMPONENT_SID_ATTR_NAME: "data-comp-sid"
+        COMPONENT_SID_ATTR_NAME: "data-comp-sid",
+
+        /**
+         * @constant {String} The model initialization event name.
+         */
+        MODEL_INIT_EVENT: "model:init",
+
+        /**
+         * @constant {String} The model init completed event name.
+         */
+        MODEL_INIT_COMPLETED_EVENT: "model:init:completed",
+
+        /**
+         * @constant {String} The button click event name.
+         */
+        COMPONENT_BTN_CLICK_EVENT: "btn:click"
     };
 });

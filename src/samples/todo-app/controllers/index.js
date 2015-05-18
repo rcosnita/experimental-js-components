@@ -1,4 +1,4 @@
-define(function() {
+define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
     /**
      * @constructor
      * @public
@@ -12,7 +12,7 @@ define(function() {
             "selector": "div[data-sid='todo-app']",
             "components": {
                 "btn-refresh": { 
-                    "model": {"label": "Custom button"}
+                    "model": new SimpleModel({"label": "Custom button"})
                 }
             }
         };
@@ -25,8 +25,8 @@ define(function() {
      * This method is invoked automatically when application starts.
      */
     TodoApp.prototype.start = function() {
-        this.components["btn-refresh"].bind("click", function() {
-            alert("Works as a charm.");
+        this.components["btn-refresh"].on(Constants.COMPONENT_BTN_CLICK_EVENT, function() {
+            console.log("Works as a charm.");
         });
     };
 
