@@ -12,7 +12,7 @@ define(["factories/model!simple_model", "utils/constants"], function(SimpleModel
             "selector": "div[data-sid='todo-app']",
             "components": {
                 "btn-refresh": { 
-                    "model": new SimpleModel({"label": "Custom button"})
+                    "model": new SimpleModel({"label": "Show task types"})
                 },
                 "dd-task-types": {
                     "model": new SimpleModel({
@@ -36,13 +36,27 @@ define(["factories/model!simple_model", "utils/constants"], function(SimpleModel
      * This method is invoked automatically when application starts.
      */
     TodoApp.prototype.start = function() {
-        this.components["dd-task-types"].on(Constants.COMPONENT_DD_ITEM_SELECTED, function(model) {
+        var ddTaskTypes = this.components["dd-task-types"],
+            btnRefresh = this.components["btn-refresh"],
+            self = this;
+
+        ddTaskTypes.trigger(Constants.COMPONENT_HIDE_EVENT, {});
+
+        ddTaskTypes.on(Constants.COMPONENT_DD_ITEM_SELECTED_EVENT, function(model) {
             console.log("Item selected.");
             console.log(model);
         });
 
-        this.components["btn-refresh"].on(Constants.COMPONENT_BTN_CLICK_EVENT, function() {
-            console.log("Works as a charm.");
+        btnRefresh.on(Constants.COMPONENT_BTN_CLICK_EVENT, function() {
+            if (!ddTaskTypes.config.model.get(Constants.MODEL_PROPERTY_VISIBLE)) {
+                ddTaskTypes.trigger(Constants.COMPONENT_SHOW_EVENT, {});
+                btnRefresh.config.model.set("label", "Hide task types");
+
+                return;
+            }
+
+            ddTaskTypes.trigger(Constants.COMPONENT_HIDE_EVENT, {});
+            btnRefresh.config.model.set("label", "Show task types");            
         });
     };
 

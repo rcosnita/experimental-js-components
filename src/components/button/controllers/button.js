@@ -24,6 +24,31 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
      */
     Button.prototype.start = function() {
         var view = this.config.view,
+            model = this.config.model,
+            self = this;
+
+        this._wireEvents();
+
+        model.on(Constants.MODEL_PROPERTY_CHANGE_EVENT, function(changeData) {
+            if (changeData.property !== "label") {
+                return;
+            }
+
+            self.refresh();
+
+            self._wireEvents();
+        });
+    };
+
+    /**
+     * @private
+     * @instance
+     * @method
+     * @description
+     * This method wires all events required for this button to work.
+     */
+    Button.prototype._wireEvents = function() {
+        var view = this.config.view,
             self = this;
 
         $(view.element).find("button").click(function() {

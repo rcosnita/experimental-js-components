@@ -33,7 +33,7 @@ define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], func
                     idx = elem.attr("data-index"),
                     itemModel = model.getData().items[idx];
 
-                self.trigger(Constants.COMPONENT_DD_ITEM_SELECTED, itemModel);
+                self.trigger(Constants.COMPONENT_DD_ITEM_SELECTED_EVENT, itemModel);
             });
         });
 

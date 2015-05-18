@@ -56,20 +56,34 @@ define(["jquery", "utils/constants"], function($, Constants) {
 
             self.components[sid] = comp;
 
-            if(comp.config.model) {
-                comp.config.model.on(Constants.MODEL_INIT_COMPLETED_EVENT, function(modelData) {
-                    elem.append(comp.config.view.render(comp.config, modelData));
-
-                    comp.start();
-                });
-
-                comp.config.model.trigger(Constants.MODEL_INIT_EVENT);
-            }            
+            self._initComponentModel(comp);
 
             loadPromise.resolve();
         });
 
         return loadPromise.promise();
+    };
+
+    /**
+     * @private
+     * @instance
+     * @method
+     * @description
+     * This method initializes the given component model by triggering model init event. Once the model is completely
+     * initialized the component is started.
+     */
+    App.prototype._initComponentModel = function(comp) {
+        var elem = comp.config.view.element;
+
+        if(comp.config.model) {
+            comp.config.model.on(Constants.MODEL_INIT_COMPLETED_EVENT, function(modelData) {
+                elem.append(comp.config.view.render(comp.config, modelData));
+
+                comp.start();
+            });
+
+            comp.config.model.trigger(Constants.MODEL_INIT_EVENT);
+        }                    
     };
 
 

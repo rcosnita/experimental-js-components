@@ -36,6 +36,31 @@ define(function() {
         MODEL_INIT_COMPLETED_EVENT: "model:init:completed",
 
         /**
+         * @constant {String} The model property change event name.
+         */
+        MODEL_PROPERTY_CHANGE_EVENT: "model:change",
+
+        /**
+         * @constant {String} The model property name where visible state is stored.
+         */
+        MODEL_PROPERTY_VISIBLE: "visible",
+
+        /**
+         * @constant {String} The component show event name.
+         */
+        COMPONENT_SHOW_EVENT: "comp:show",
+
+        /**
+         * @constant {String} The component hide event name.
+         */
+        COMPONENT_HIDE_EVENT: "comp:hide",
+
+        /**
+         * @constant {String} The component reload event name.
+         */
+        COMPONENT_RELOAD_EVENT: "comp:reload",
+
+        /**
          * @constant {String} The button click event name.
          */
         COMPONENT_BTN_CLICK_EVENT: "btn:click",
@@ -43,6 +68,6 @@ define(function() {
         /**
          * @constant {String} The dropdopwn selected item event name.
          */
-        COMPONENT_DD_ITEM_SELECTED: "dd:selected-item"
+        COMPONENT_DD_ITEM_SELECTED_EVENT: "dd:selected-item"
     };
 });
