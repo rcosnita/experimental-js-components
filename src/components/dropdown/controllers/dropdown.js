@@ -22,6 +22,34 @@ define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], func
      */
     DropDown.prototype.start = function() {
         var model = this.config.model,
+            self = this;
+
+        this._bindDropDownEvents();
+
+        this.on(Constants.COMPONENT_RELOAD_EVENT, function() {
+            self._bindDropDownEvents();
+        });
+
+        model.on(Constants.MODEL_PROPERTY_CHANGE_EVENT, function(changeData) {
+            if (changeData.property !== "title") {
+                return;
+            }
+
+            self.refresh();
+        });
+
+        console.log("DropDown component started.");        
+    };
+
+    /**
+     * @private
+     * @instance
+     * @method
+     * @description
+     * This method binds drop down events to the dom element and transform them to high level component events.
+     */
+    DropDown.prototype._bindDropDownEvents = function() {
+        var model = this.config.model,
             view = this.config.view,
             domElement = view.element,
             ddElem = domElement.find("button[data-sid='dropdown']").dropdown(),
@@ -34,10 +62,10 @@ define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], func
                     itemModel = model.getData().items[idx];
 
                 self.trigger(Constants.COMPONENT_DD_ITEM_SELECTED_EVENT, itemModel);
+                model.set("selectedItem", itemModel);
+                model.set("title", itemModel[self.config.textName]);
             });
         });
-
-        console.log("DropDown component started.");        
     };
 
     return DropDown;

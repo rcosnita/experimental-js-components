@@ -19,7 +19,7 @@ define(["jquery", "eventemitter", "utils/constants"], function($, EventEmitter, 
             model = this.config.model;
 
         view.element.empty();
-        view.element.append(view.render(self.config, model.getData()));
+        view.element.append(view.render(this.config, model.getData()));
         
         this.__wireCommonEvents();
 
