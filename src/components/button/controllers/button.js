@@ -12,6 +12,7 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
      * ---------- | ---------- | -----------------
      * btn:click | {} | Triggered whenever the button is pressed.
      *
+     * In addition to above mentioned events, you should also {@link UI/Components.Component} events. 
      * 
      * # Examples
      *
@@ -50,12 +51,12 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
      *     return App;
      * }
      * ```
-     *
+     * 
      * @public
      * @class
      * @constructor
-     * @augments UI/Components/Model/Model
-     * @exports UI/Components/Button
+     * @memberof UI/Components
+     * @extends UI/Components.Component
      */
     function Button() { 
         console.log("Button controller instantiated.");
@@ -66,12 +67,11 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
     };
 
     /**
-     * @public
-     * @instance
-     * @method
-     * @description
      * This method is invoked automatically by the framework in order to let the component to wire it's functionality. 
-     At this stage, the component view is already binded to dom and works as expected.
+     * At this stage, the component view is already binded to dom and works as expected.
+     * 
+     * @public
+     * @method
      */
     Button.prototype.start = function() {
         var view = this.config.view,
@@ -92,11 +92,10 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
     };
 
     /**
-     * @private
-     * @instance
-     * @method
-     * @description
      * This method wires all events required for this button to work.
+     * 
+     * @private
+     * @method
      */
     Button.prototype._wireEvents = function() {
         var view = this.config.view,

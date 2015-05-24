@@ -1,26 +1,25 @@
 define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], function($, view, Constants) {
     /**
+     * This class provides the implementation for dropdown component.
+     * 
      * @public
      * @class
      * @constructor
-     * @exports UI/Components/DropDown
-     * @description
-     * This class provides the implementation for dropdown component.
+     * @memberof UI/Components
      */
     function DropDown() { 
-        console.log("DropDown controller instantiated.");
-
         this.config = {
             "view": view
         }
+
+        console.log("DropDown controller instantiated.");
     };
 
     /**
-     * @public
-     * @instance
-     * @method
-     * @description
      * This method implements the logic executed when the component is fully started.
+     * 
+     * @public
+     * @method
      */
     DropDown.prototype.start = function() {
         var model = this.config.model,
@@ -44,11 +43,10 @@ define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], func
     };
 
     /**
-     * @private
-     * @instance
-     * @method
-     * @description
      * This method binds drop down events to the dom element and transform them to high level component events.
+     * 
+     * @private
+     * @method
      */
     DropDown.prototype._bindDropDownEvents = function() {
         var model = this.config.model,

@@ -1,10 +1,18 @@
 define(["jquery", "handlebars", "utils/constants"], 
+    /**
+     * @namespace UI/Components/Views
+     */
     function($, Handlebars, Constants) {
     /**
+     * This class provides the view foundation which can be used by all custom components. Each view benefits from 
+     * Handlebars templating engine. Using handlebars, complex views can be coded easily making components development
+     * extremely easy.
+     *
+     * @class
      * @constructor
      * @public
-     * @description
-     * This class provides the view foundation which can be used by all custom components.
+     * @memberof UI/Components/Views
+     * @see  http://handlebarsjs.com/
      */
     function View(template) {
         this._templateText = template;
@@ -12,12 +20,12 @@ define(["jquery", "handlebars", "utils/constants"],
     }
 
     /**
+     * This method renders the current view using data from the given model.
+     * 
      * @public
-     * @instance
      * @method
-     * @description
-     * This method renders the current view using data from the given model. In addition it receives the current
-     * configuration of the component which triggered the rendering.
+     * @param {Object} config The configuration object before triggering render.
+     * @param {Object} modelData The model data obtained from the model before triggering render.
      */
     View.prototype.render = function(config, modelData) {
         modelData = modelData || {};

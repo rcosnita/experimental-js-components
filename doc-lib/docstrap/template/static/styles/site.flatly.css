@@ -20,6 +20,7 @@ table th, tr, td {
 
 table td {
   padding-left: 20px;
+  paddign-right: 20px;
 }
 
 .clearfix {

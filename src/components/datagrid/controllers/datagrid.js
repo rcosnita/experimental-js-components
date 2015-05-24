@@ -1,12 +1,12 @@
 define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jquery-ui"], 
     function($, view, Constants) {
     /**
+     * This class provides the datagrid controller in which various models can be binded for presentation.
+     * 
      * @public
      * @class
      * @constructor
-     * @exports UI/Components/DataGrid
-     * @description
-     * This class provides the datagrid controller in which various models can be binded for presentation.
+     * @memberof UI/Components
      */
     function DataGrid() { 
         this.config = {
@@ -30,11 +30,10 @@ define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jque
     DataGrid.prototype._ITEM_IDX_ATTR_NAME = "data-item-index";
 
     /**
-     * @public
-     * @instance
-     * @method
-     * @description
      * This method is invoked automatically when the datagrid is started correctly.
+     * 
+     * @public
+     * @method
      */
     DataGrid.prototype.start = function() {
         var gridElement = $(this.config.view.element),
@@ -46,11 +45,10 @@ define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jque
     };
 
     /**
-     * @private
-     * @instance
-     * @method
-     * @description
      * This method is used to wire select item event to the current datagrid.
+     * 
+     * @private
+     * @method
      */
     DataGrid.prototype._wireSelectItemEvent = function(gridElement, model) {
         var self = this;

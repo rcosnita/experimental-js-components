@@ -1,20 +1,27 @@
-define(["jquery", "eventemitter", "utils/constants"], function($, EventEmitter, Constants) {
+define(["jquery", "eventemitter", "utils/constants"], 
     /**
-     * @constructor
-     * @public
-     * @description
-     * This class provides the foundation for all models available. Each model inherits this
+     * @namespace UI/Components/Models
+     */
+    function($, EventEmitter, Constants) {
+    /**
+    * This class provides the foundation for all models available. Each model inherits this
      * base model and also becomes an event emitter.
+     *
+     * @public
+     * @class
+     * @constructor
+     * @memberof UI/Components/Models
      */
     function Model() { }
 
     /**
+     * This method changes a given property with the new value. It also triggers a change event for components who
+     * use this instance.
+     * 
      * @public
-     * @instance
      * @method
-     * @description
-     * This method changes a given property with the new value. It also triggers a change event for outside
-     * world.
+     * @param {String} propertyName The property name which must be set set into model.
+     * @param {Object} newValue The property value which must set into model.
      */
     Model.prototype.set = function(propertyName, newValue) {
         var oldValue = this.getData()[propertyName];
@@ -27,11 +34,12 @@ define(["jquery", "eventemitter", "utils/constants"], function($, EventEmitter, 
     };
 
     /**
-     * @public
-     * @instance
-     * @method
-     * @description
      * This method retrieves the specified property name value from the current model.
+     *
+     * @public
+     * @method
+     * @param {String} propertyName The property name which must be retrieved from model.
+     * @returns {Object} The property value if found in model or undefined otherwise.
      */
     Model.prototype.get = function(propertyName) {
         return this.getData()[propertyName];
