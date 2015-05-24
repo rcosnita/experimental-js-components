@@ -1,12 +1,22 @@
 define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jquery-ui"], 
     function($, view, Constants) {
     /**
-     * This class provides the datagrid controller in which various models can be binded for presentation.
+     * # Summary
+     * 
+     * Datagrid provides a simple component which can present various models into a table like format.
+     *
+     * # Events
+     *
+     *  Event name | Event body | Event description
+     * ---------- | ---------- | -----------------
+     * datagrid:selected-row | Model object representing selected row. | Triggered whenever a datagrid row is selected.
+     *
      * 
      * @public
      * @class
      * @constructor
      * @memberof UI/Components
+     * @extends UI/Components.Component
      */
     function DataGrid() { 
         this.config = {

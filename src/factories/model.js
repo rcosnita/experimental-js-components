@@ -46,11 +46,10 @@ define(["jquery", "eventemitter", "utils/constants"],
     };
 
     /**
-     * @public
-     * @instance
-     * @method
-     * @description
      * This method is used to distinguish model classes from regular ones.
+     * 
+     * @public
+     * @method
      */
     Model.prototype.isModel = function() {
         return true;

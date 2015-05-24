@@ -1,6 +1,20 @@
 define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], function($, view, Constants) {
     /**
-     * This class provides the implementation for dropdown component.
+     * # Summary
+     * 
+     * Dropdown component allowing user to display various items and selected them.
+     *
+     * # Events
+     *
+     * Event name | Event body | Event description
+     * ---------- | ---------- | -----------------
+     * dd:selected-item | Model object representing selected item. | Triggered whenever a dropdown item is selected.
+     *
+     * # Model events
+     *
+     * Event name | Event body | Event description
+     * ---------- | ---------- | -----------------
+     * model:change | {"property": "title"} | Whenever the model sends a title change event the dropdown component updates the title.
      * 
      * @public
      * @class
