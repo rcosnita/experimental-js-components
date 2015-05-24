@@ -15,6 +15,63 @@ define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], func
      * Event name | Event body | Event description
      * ---------- | ---------- | -----------------
      * model:change | {"property": "title"} | Whenever the model sends a title change event the dropdown component updates the title.
+     *
+     * # Examples
+     *
+     * ```html
+<!-- <custom_app>/views/index.html -->
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Welcome to dropdown sample application.</title>
+    </head>
+
+    <body>
+        <div data-sid="app"> 
+            <div data-comp-sid="dd-sample" data-comp-type="dropdown"></div>
+        </div>
+    </body>
+</html>
+     * ```
+     *
+     * ```javascript
+// <custom_app>/controllers/index.js
+define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
+    function App() {
+        this.config = {
+            "selector": "div[data-sid='app']",
+            "components": {
+                "dd-task-types": {
+                    "model": new SimpleModel({
+                        "title": "Sample dropdown",
+                        "items": [
+                            {"name": "Work task", "value": 1, "attr1": "Attribute 1 of work task."},
+                            {"name": "Personal task", "value": 2, "attr1": "Attribute 2 of personal task."}
+                        ]
+                    }),
+                    "valueName": "value",
+                    "textName": "name"
+                }
+            }
+        };
+    };
+
+    App.prototype.start = function() {
+        this._wireDdTaskTypesEvents();
+    };
+
+    App.prototype._wireDdTaskTypesEvents = function() {
+        var ddTaskTypes = this.components["dd-sample"];
+
+        ddTaskTypes.on("dd:selected-item", function(model) {
+            console.log(model);
+        });
+    };
+
+    return App;
+});
+     * ```
      * 
      * @public
      * @class
