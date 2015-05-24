@@ -6,9 +6,7 @@ define(["utils/constants"], function(Constants) {
      * This model provides a simple wrapper over a json object.
      */
     function SimpleModel(json) {
-        console.log("SimpleModel instantiated.");
-
-        this._json = json;
+        this._json = json || {};
 
         this._wireEvents();
     };

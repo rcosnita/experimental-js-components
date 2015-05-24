@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <table class="table">
+        <thead>
+            <tr>
+            {{#each model.columns}}
+                <th data-col-sid="{{this.id}}">{{this.name}}</th>
+            {{/each}}
+            </tr>
+        </thead>
+
+        <tbody>
+        {{#each model.items}}
+            <tr data-item-index="{{@index}}">
+            {{#each ../model.columns}}
+                <td>{{getProperty ../this this.id}}</td>
+            {{/each}}
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

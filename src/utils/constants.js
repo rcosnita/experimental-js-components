@@ -68,6 +68,11 @@ define(function() {
         /**
          * @constant {String} The dropdopwn selected item event name.
          */
-        COMPONENT_DD_ITEM_SELECTED_EVENT: "dd:selected-item"
+        COMPONENT_DD_ITEM_SELECTED_EVENT: "dd:selected-item",
+
+        /**
+         * @constant {String} The datagrid selected item event name.
+         */
+        COMPONENT_DATAGRID_ITEM_SELECTED_EVENT: "datagrid:selected-row"
     };
 });

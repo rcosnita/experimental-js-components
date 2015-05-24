@@ -37,6 +37,17 @@ define(["jquery", "eventemitter", "utils/constants"], function($, EventEmitter, 
         return this.getData()[propertyName];
     };
 
+    /**
+     * @public
+     * @instance
+     * @method
+     * @description
+     * This method is used to distinguish model classes from regular ones.
+     */
+    Model.prototype.isModel = function() {
+        return true;
+    };
+
     EventEmitter.mixin(Model.prototype);
 
     /**
