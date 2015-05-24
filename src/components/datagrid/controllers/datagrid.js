@@ -1,7 +1,10 @@
-define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jquery-ui"], function($, view, Constants) {
+define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jquery-ui"], 
+    function($, view, Constants) {
     /**
      * @public
+     * @class
      * @constructor
+     * @exports UI/Components/DataGrid
      * @description
      * This class provides the datagrid controller in which various models can be binded for presentation.
      */

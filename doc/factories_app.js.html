@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Documentation Source: factories/app.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	
+	<link type="text/css" rel="stylesheet" href="styles/site.flatly.css">
+	
+</head>
+
+<body>
+<div class="container-fluid">
+	<div class="navbar navbar-fixed-top ">
+		<div class="navbar-inner">
+			<a class="brand" href="index.html">Documentation</a>
+			<ul class="nav">
+				
+				<li class="dropdown">
+					<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="module-UI_Components_Button.html">UI/Components/Button</a>
+						</li>
+						
+						<li>
+							<a href="module-UI_Components_DataGrid.html">UI/Components/DataGrid</a>
+						</li>
+						
+						<li>
+							<a href="module-UI_Components_DropDown.html">UI/Components/DropDown</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b
+						class="caret"></b></a>
+
+					<ul class="dropdown-menu ">
+						
+						<li>
+							<a href="global.html#The">The</a>
+						</li>
+						
+
+					</ul>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+
+		
+			<div class="span12">
+				
+				<div id="main">
+					
+
+
+		<h1 class="page-title">Source: factories/app.js</h1>
+    
+    <section>
+        <article>
+            <pre class="sunlight-highlight-javascript ">define(["jquery", "utils/constants"], function($, Constants) {
+    /**
+     * @constructor
+     * @private
+     * @description
+     * This class provides the foundation for each application which is going to be created using the convention from this experiment.
+     */
+    function App() {}
+
+    /**
+     * @private
+     * @instance
+     * @method
+     * @description
+     * This method is used to bind the app root context and loads all children subcomponents. All physical bindings
+     * are saved into components attribute.
+     */ 
+    App.prototype._bindRootContext = function(req) {
+        var compLoaders = [],
+            self = this;
+
+        this.components = {
+            "root": $(this.config.selector)
+        };
+
+        $("*[data-comp-type]").each(function(elem, elemValue) {
+            compLoaders.push(self._createComponent(req, $(elemValue)));
+        });
+
+        return compLoaders;
+    };
+
+
+    /**
+     * @private
+     * @instance
+     * @method
+     * @param {JqueryObject} elem The jquery element which we want to transform into a component.
+     * @description
+     * This method is responsible for transforming the given element into a component and bind it's controller to components namespace.
+     */
+    App.prototype._createComponent = function(req, elem) {
+        var sid = elem.attr(Constants.COMPONENT_SID_ATTR_NAME),
+            compType = elem.attr(Constants.COMPONENT_TYPE_ATTR_NAME),
+            compLoadId = ["factories/component!", compType].join(""),
+            loadPromise = $.Deferred(),
+            self = this;
+
+        req([compLoadId], function(comp) {
+            comp.config.view.element = elem;
+            comp.config.view.component = comp;
+
+            $.extend(comp.config, (self.config.components || {})[sid] || {});
+
+            comp.config.parentApp = self;
+
+            self.components[sid] = comp;
+
+            self._initComponentModel(comp);
+
+            loadPromise.resolve();
+        });
+
+        return loadPromise.promise();
+    };
+
+    /**
+     * @private
+     * @instance
+     * @method
+     * @description
+     * This method initializes the given component model by triggering model init event. Once the model is completely
+     * initialized the component is started.
+     */
+    App.prototype._initComponentModel = function(comp) {
+        var elem = comp.config.view.element;
+
+        if(comp.config.model) {
+            comp.config.model.on(Constants.MODEL_INIT_COMPLETED_EVENT, function(modelData) {
+                elem.append(comp.config.view.render(comp.config, modelData));
+
+                comp.start();
+            });
+
+            comp.config.model.trigger(Constants.MODEL_INIT_EVENT);
+        }                    
+    };
+
+
+    /**
+     * @constructor
+     * @public
+     * @description
+     * This plugin provides the requirejs plugin used to instantiate applications.
+     */
+    function AppPlugin() {}
+
+    /**
+     * @public
+     * @instance
+     * @method
+     * @description
+     * This method is invoked automatically in order to load the given plugin.
+     */
+    AppPlugin.prototype.load = function(name, req, onload, config) {
+        req([name], function(LoadedApp) {
+            app = new LoadedApp();
+
+            $.extend(app, new App());
+
+            $(document).ready(function() {
+                var loaders = app._bindRootContext(req),
+                    resolvedLoaders = 0;
+
+                $.when.apply($, loaders).then(function() {
+                    app.start();
+                    onload(app);
+                });
+            });
+        });
+    };
+
+    return new AppPlugin();
+});</pre>
+        </article>
+    </section>
+
+
+
+
+
+				</div>
+
+				<div class="clearfix"></div>
+				<footer>
+					
+					
+		<span class="jsdoc-message">
+		Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a>
+		on Sun May 24 2015 13:30:08 GMT+0300 (EEST) using the <a href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
+		</span>
+				</footer>
+			</div>
+
+			
+			<br clear="both">
+		</div>
+
+	</div>
+	<script src="scripts/sunlight.js"></script>
+	<script src="scripts/sunlight.javascript.js"></script>
+	<script src="scripts/sunlight-plugin.doclinks.js"></script>
+	<script src="scripts/sunlight-plugin.linenumbers.js"></script>
+	<script src="scripts/sunlight-plugin.menu.js"></script>
+	<script src="scripts/jquery.min.js"></script>
+	<script src="scripts/jquery.scrollTo.js"></script>
+	<script src="scripts/jquery.localScroll.js"></script>
+	<script src="scripts/bootstrap-dropdown.js"></script>
+	<script src="scripts/toc.js"></script>
+
+
+	<script>  Sunlight.highlightAll({lineNumbers:,  showMenu: true, enableDoclinks :true}); </script>
+
+	<script>
+		$( function () {
+			$( "#toc" ).toc( {
+				selectors   : "h1,h2,h3,h4",
+				showAndHide : false,
+				scrollTo    : 60
+			} );
+			$( "#toc>ul" ).addClass( "nav nav-pills nav-stacked" );
+			$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+
+		} );
+	</script>
+
+	
+
+</body>
+</html>

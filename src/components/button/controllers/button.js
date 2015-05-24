@@ -1,12 +1,63 @@
 define(["jquery", "factories/view!button:index.html", "utils/constants", "bootstrap"], 
     function($, view, Constants) {
     /**
-     * @constructor
+     * # Summary
+     *
+     * Button component provides a very simple pressable button which can provides various events in order to allow
+     * app developers to intercept button interactions.
+     * 
+     * # Events
+     *
+     * Event name | Event body | Event description
+     * ---------- | ---------- | -----------------
+     * btn:click | {} | Triggered whenever the button is pressed.
+     *
+     * 
+     * # Examples
+     *
+     * ```html
+     * <html>
+     *     <head>
+     *         <title>Simple app using button</title>
+     *     </head>
+     *     
+     *     <body>
+     *         <div data-comp-sid="btn-sample" data-comp-type="button"></div>
+     *     </body>
+     * </html>
+     * ```
+     *
+     * ```js
+     * define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
+     *     function App() {
+     *         console.log("Sample app instantiated.");
+     *
+     *         this.config = {
+     *             "btn-sample": {
+     *                 "model": new SimpleModel({"label": "Demo button."});
+     *             }
+     *         };
+     *     };
+     *
+     *     App.prototype.start = function() {
+     *         var btn = this.components["btn-sample"];
+     *
+     *         btn.on("btn:click", function() {
+     *             alert("Button clicked.");
+     *         }); 
+     *     };
+     *
+     *     return App;
+     * }
+     * ```
+     *
      * @public
-     * @description
-     * This class provides the implementation for a button component.
+     * @class
+     * @constructor
+     * @augments UI/Components/Model/Model
+     * @exports UI/Components/Button
      */
-    function Button() {
+    function Button() { 
         console.log("Button controller instantiated.");
 
         this.config = {

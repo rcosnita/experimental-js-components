@@ -1,7 +1,9 @@
 define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], function($, view, Constants) {
     /**
      * @public
+     * @class
      * @constructor
+     * @exports UI/Components/DropDown
      * @description
      * This class provides the implementation for dropdown component.
      */
