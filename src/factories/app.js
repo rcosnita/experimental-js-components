@@ -1,19 +1,23 @@
+/**
+ * @namespace  UI/Components/Apps
+ */
 define(["jquery", "utils/constants"], function($, Constants) {
     /**
-     * @constructor
-     * @private
-     * @description
      * This class provides the foundation for each application which is going to be created using the convention from this experiment.
+     *
+     * @class
+     * @constructor
+     * @public
+     * @memberof UI/Components/Apps
      */
     function App() {}
 
     /**
-     * @private
-     * @instance
-     * @method
-     * @description
      * This method is used to bind the app root context and loads all children subcomponents. All physical bindings
      * are saved into components attribute.
+     * 
+     * @private
+     * @method
      */ 
     App.prototype._bindRootContext = function(req) {
         var compLoaders = [],
@@ -32,12 +36,13 @@ define(["jquery", "utils/constants"], function($, Constants) {
 
 
     /**
-     * @private
-     * @instance
-     * @method
-     * @param {JqueryObject} elem The jquery element which we want to transform into a component.
-     * @description
      * This method is responsible for transforming the given element into a component and bind it's controller to components namespace.
+     * 
+     * @private
+     * @method
+     * @param {Require} req requirejs instance which can be used to load additional dependencies.
+     * @param {JqueryObject} elem The jquery element which we want to transform into a component.
+     * @returns {Promise} a promise which return the component controller when resolved.
      */
     App.prototype._createComponent = function(req, elem) {
         var sid = elem.attr(Constants.COMPONENT_SID_ATTR_NAME),
@@ -65,12 +70,12 @@ define(["jquery", "utils/constants"], function($, Constants) {
     };
 
     /**
-     * @private
-     * @instance
-     * @method
-     * @description
      * This method initializes the given component model by triggering model init event. Once the model is completely
      * initialized the component is started.
+     * 
+     * @private
+     * @method
+     * @param {UI.Components.Component} comp The component for which we initialize the model.
      */
     App.prototype._initComponentModel = function(comp) {
         var elem = comp.config.view.element;
@@ -88,19 +93,18 @@ define(["jquery", "utils/constants"], function($, Constants) {
 
 
     /**
+     * This plugin improves requirejs and makes it possible to load application controllers.
+     *
      * @constructor
      * @public
-     * @description
-     * This plugin provides the requirejs plugin used to instantiate applications.
      */
     function AppPlugin() {}
 
     /**
-     * @public
-     * @instance
-     * @method
-     * @description
      * This method is invoked automatically in order to load the given plugin.
+     *      
+     * @public
+     * @method
      */
     AppPlugin.prototype.load = function(name, req, onload, config) {
         req([name], function(LoadedApp) {

@@ -6,12 +6,17 @@
     "opts": {
         "recurse": true,
         "template": "doc-lib/docstrap/template",
-        "tutorials": ""
+        "tutorials": "doc-lib/tutorials"
     },    
     "templates": {
         "cleverLinks": false,
         "default": {
-            "outputSourceFiles": true
+            "outputSourceFiles": true,
+            "staticFiles": {
+                "include": [
+                    "./doc-lib/tutorials"
+                ]
+            }            
         },
         "monospaceLinks": false,
         "theme": "flatly"

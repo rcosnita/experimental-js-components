@@ -2,7 +2,7 @@ define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], func
     /**
      * # Summary
      * 
-     * Dropdown component allowing user to display various items and selected them.
+     * Dropdown component allows developer to display various items and selected them.
      *
      * # Events
      *

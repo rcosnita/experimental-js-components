@@ -5,8 +5,7 @@ define(["jquery", "handlebars", "utils/constants"],
     function($, Handlebars, Constants) {
     /**
      * This class provides the view foundation which can be used by all custom components. Each view benefits from 
-     * Handlebars templating engine. Using handlebars, complex views can be coded easily making components development
-     * extremely easy.
+     * Handlebars templating engine. Using handlebars, complex views can be coded easily.
      *
      * @class
      * @constructor

@@ -5,7 +5,7 @@ grunt.loadNpmTasks('grunt-jsdoc');
 grunt.initConfig({
     "jsdoc" : {
         "dist" : {
-            "src": ["src/**/*.js"],
+            "src": ["src/**/*.js", "doc-lib/index.md"],
             "options": {
                 "destination": "doc",
                 "configure": "jsdoc.json",
