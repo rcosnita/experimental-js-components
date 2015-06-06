@@ -6,7 +6,7 @@ define(["utils/constants"], function(Constants) {
      * @class
      * @constructor
      * @memberof UI/Components/Models
-     * @extends UI.Components.Models.Model
+     * @extends UI/Components/Models.Model
      */
     function SimpleModel(json) {
         this._json = json || {};

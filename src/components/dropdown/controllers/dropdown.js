@@ -77,6 +77,7 @@ define(["factories/model!simple_model", "utils/constants"], function(SimpleModel
      * @class
      * @constructor
      * @memberof UI/Components
+     * @extends UI/Components.Component
      */
     function DropDown() { 
         this.config = {

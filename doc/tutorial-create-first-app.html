@@ -71,6 +71,168 @@
     <h1>Summary</h1><p>In this tutorial you are going to create a simple application which uses several available components from the framework. During the tutorial you will learn the basic principles of the framework.</p>
 <h1>App description</h1><p>The application we are going to create uses a dropdown component, a button and a datagrid. Below you can see some screenshots of the app:</p>
 <p><img src="create-first-app/start-state.png" alt="Start page only with a button displayed"></p>
+<p><img src="create-first-app/revealed-components.png" alt="Show tasks button pressed"></p>
+<p><img src="create-first-app/dropdown-unfolded.png" alt="Drop down unfolded"></p>
+<p><img src="create-first-app/selected-task-type.png" alt="Selected task type"></p>
+<p><img src="create-first-app/selected-grid-row.png" alt="Selected grid row"></p>
+<h2>App components</h2><p>The application we are creating uses the following components:</p>
+<ul>
+<li><a href="UI_Components.Button.html">UI/Components.Button</a></li>
+<li><a href="UI_Components.DropDown.html">UI/Components.DropDown</a></li>
+<li><a href="UI_Components.DataGrid.html">UI/Components.DataGrid</a></li>
+</ul>
+<h1>App code</h1><p>The source code for this application can be found on github: https://github.com/rcosnita/experimental-js-components/tree/master/src/samples/todo-app</p>
+<p>Each application which uses the current framework has a minimum set of requirements:</p>
+<ol>
+<li>Provide an app configuration</li>
+<li>Provide an app controller </li>
+<li>Provide an app view</li>
+<li>(Optional) create custom application models.</li>
+</ol>
+<h2>App view</h2><pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+
+&lt;html>
+    &lt;head>
+        &lt;title>Welcome to todo application.&lt;/title>
+
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../../../../lib/bootstrap-3.3.4/css/bootstrap.css&quot; />
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../../../../lib/bootstrap-3.3.4/css/bootstrap-theme.css&quot; />
+
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;>
+    &lt;/head>
+
+    &lt;body>
+        &lt;div data-sid=&quot;todo-app&quot;> 
+            &lt;div data-comp-sid=&quot;dd-task-types&quot; data-comp-type=&quot;dropdown&quot;>&lt;/div>
+            &lt;div data-comp-sid=&quot;btn-refresh&quot; data-comp-type=&quot;button&quot;>&lt;/div>
+
+            &lt;div data-comp-sid=&quot;grid-tasks&quot; data-comp-type=&quot;datagrid&quot;>&lt;/div>
+        &lt;/div>
+
+        &lt;script type=&quot;text/javascript&quot; src=&quot;../../../../lib/require-2.1.17.js&quot;>&lt;/script>
+        &lt;script type=&quot;text/javascript&quot; src=&quot;../app.js&quot;>&lt;/script>
+    &lt;/body>
+&lt;/html></code></pre><p>In the above code take a look at how components are defined within the view:</p>
+<ul>
+<li><strong>data-comp-type</strong> - defines the type we component we want to use from the framework.</li>
+<li><strong>data-comp-sid</strong> - defines the unique identifier under which the component will be accessible from app controller.</li>
+</ul>
+<h2>App controller</h2><pre class="prettyprint source lang-javascript"><code>define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], function(SimpleModel, Constants) {
+    function TodoApp() {
+        this.config = {
+            &quot;selector&quot;: &quot;div[data-sid='todo-app']&quot;,
+            &quot;components&quot;: {
+                &quot;btn-refresh&quot;: { 
+                    &quot;model&quot;: new SimpleModel({&quot;label&quot;: &quot;Show task types&quot;})
+                },
+                &quot;dd-task-types&quot;: {
+                    &quot;model&quot;: new SimpleModel({
+                        &quot;title&quot;: &quot;Sample dropdown&quot;,
+                        &quot;items&quot;: [
+                            {&quot;name&quot;: &quot;Work task&quot;, &quot;value&quot;: 1, &quot;attr1&quot;: &quot;Attribute 1 of work task.&quot;},
+                            {&quot;name&quot;: &quot;Personal task&quot;, &quot;value&quot;: 2, &quot;attr1&quot;: &quot;Attribute 2 of personal task.&quot;}
+                        ]
+                    }),
+                    &quot;valueName&quot;: &quot;value&quot;,
+                    &quot;textName&quot;: &quot;name&quot;
+                },
+                &quot;grid-tasks&quot;: {
+                    &quot;model&quot;: new SimpleModel({
+                        &quot;columns&quot;: [
+                            {&quot;id&quot;: &quot;#&quot;, &quot;name&quot;: &quot;#&quot;},
+                            {&quot;id&quot;: &quot;firstName&quot;, &quot;name&quot;: &quot;First name&quot;},
+                            {&quot;id&quot;: &quot;lastName&quot;, &quot;name&quot;: &quot;Last name&quot;}
+                        ],
+                        &quot;items&quot;: [
+                            new SimpleModel({&quot;#&quot;: &quot;1&quot;, &quot;firstName&quot;: &quot;Radu Viorel&quot;, &quot;lastName&quot;: &quot;Cosnita&quot;}),
+                            new SimpleModel({&quot;#&quot;: &quot;2&quot;, &quot;firstName&quot;: &quot;Dan&quot;, &quot;lastName&quot;: &quot;Popa&quot;}),
+                            new SimpleModel({&quot;#&quot;: &quot;3&quot;, &quot;firstName&quot;: &quot;Adriana Elena&quot;, &quot;lastName&quot;: &quot;Cosnita&quot;})
+                        ]
+                    })
+                }
+            }
+        };
+    };
+
+    TodoApp.prototype.start = function() {
+        var ddTaskTypes = this.components[&quot;dd-task-types&quot;],
+            btnRefresh = this.components[&quot;btn-refresh&quot;],
+            gridTasks = this.components[&quot;grid-tasks&quot;];
+
+        this._hideComponents([ddTaskTypes, gridTasks]);
+
+        this._wireBtnRefreshEvents();
+        this._wireDdTaskTypesEvents();
+        this._wireGridTasksEvents();
+    };
+
+    TodoApp.prototype._hideComponents = function(comps, visible) {
+        comps = comps || [];
+        visible = visible || false;
+
+        var evtName = !visible ? Constants.COMPONENT_HIDE_EVENT : Constants.COMPONENT_SHOW_EVENT;
+
+        for (var compIdx in comps) {
+            comps[compIdx].trigger(evtName, {});
+        }
+    };
+
+    TodoApp.prototype._wireBtnRefreshEvents = function() {
+        var ddTaskTypes = this.components[&quot;dd-task-types&quot;],
+            btnRefresh = this.components[&quot;btn-refresh&quot;],
+            gridTasks = this.components[&quot;grid-tasks&quot;],
+            self = this;
+
+        btnRefresh.on(Constants.COMPONENT_BTN_CLICK_EVENT, function() {
+            if (!ddTaskTypes.config.model.get(Constants.MODEL_PROPERTY_VISIBLE)) {
+                ddTaskTypes.trigger(Constants.COMPONENT_SHOW_EVENT, {});
+                gridTasks.trigger(Constants.COMPONENT_SHOW_EVENT, {});
+
+                btnRefresh.config.model.set(&quot;label&quot;, &quot;Hide task types&quot;);
+
+                return;
+            }
+
+            ddTaskTypes.trigger(Constants.COMPONENT_HIDE_EVENT, {});
+            gridTasks.trigger(Constants.COMPONENT_HIDE_EVENT, {});
+
+            btnRefresh.config.model.set(&quot;label&quot;, &quot;Show task types&quot;);            
+        });
+    };
+
+    TodoApp.prototype._wireDdTaskTypesEvents = function() {
+        var ddTaskTypes = this.components[&quot;dd-task-types&quot;];
+
+        ddTaskTypes.on(Constants.COMPONENT_DD_ITEM_SELECTED_EVENT, function(model) {
+            console.log(&quot;Item selected.&quot;);
+            console.log(model);
+        });
+    };
+
+    TodoApp.prototype._wireGridTasksEvents = function() {
+        var gridTasks = this.components[&quot;grid-tasks&quot;],
+            self = this;
+
+        gridTasks.on(Constants.COMPONENT_DATAGRID_ITEM_SELECTED_EVENT, function(selectedItem) {
+            console.log(selectedItem);
+        });
+    };
+
+    return TodoApp;
+});</code></pre><p>Each application controller must defines its dependencies using requirejs. In the class constructor each app controller must define a config json property with the following structure:</p>
+<ul>
+<li><strong>selector</strong> - defines the component selector used to choose the dom element transformed into an app.</li>
+<li><strong>components</strong> - contains a json object where each key must point to a defined component sid used in view.</li>
+</ul>
+<p>For instance,</p>
+<pre class="prettyprint source lang-javascript"><code>        this.config = {
+            &quot;selector&quot;: &quot;div[data-sid='todo-app']&quot;,
+            &quot;components&quot;: {
+                &quot;btn-refresh&quot;: { 
+                    &quot;model&quot;: new SimpleModel({&quot;label&quot;: &quot;Show task types&quot;})
+                }
+            }
+        };</code></pre><p>tells that button label is provided by a simple model. Each component provides examples of what can be configured and how it can be used.</p>
 </article>
 
 </section>
@@ -91,7 +253,7 @@
 
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a>
-	on 2015-06-06T19:55:36+03:00 using the <a
+	on 2015-06-06T20:18:47+03:00 using the <a
 	href="https://github.com/terryweiss/docstrap">DocStrap template</a>.
 </span>
 </footer>
