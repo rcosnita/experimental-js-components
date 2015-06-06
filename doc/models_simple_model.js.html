@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Namespace: UI/Components/Models</title>
+    <title>JSDoc: Source: models/simple_model.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,107 +17,57 @@
 
 <div id="main">
 
-    <h1 class="page-title">Namespace: UI/Components/Models</h1>
+    <h1 class="page-title">Source: models/simple_model.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        UI/Components/Models
-        </h2>
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(["utils/constants"], function(Constants) {
+    /**
+     * This model provides a simple wrapper over a json object.
+     * 
+     * @public
+     * @class
+     * @constructor
+     * @memberof UI/Components/Models
+     * @extends UI/Components/Models.Model
+     */
+    function SimpleModel(json) {
+        this._json = json || {};
 
-<article>
-    <div class="container-overview">
-    
-        
+        this._wireEvents();
+    };
 
-        
+    /**
+     * This method returns the current loaded data belonging to the model.
+     * @public
+     * @method
+     */
+    SimpleModel.prototype.getData = function() {
+        return this._json;
+    };
 
+    /**
+     * This method wires all required events for being able to communicate with the model.
+     * @private
+     * @method
+     */
+    SimpleModel.prototype._wireEvents = function() {
+        var self = this;
 
-<dl class="details">
+        this.on(Constants.MODEL_INIT_EVENT, function() {
+            self.trigger(Constants.MODEL_INIT_COMPLETED_EVENT, self._json);
+        });        
+    };
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line2">line 2</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="UI_Components_Models.Model.html">Model</a></dt>
-            <dd></dd>
-        
-            <dt><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    return SimpleModel;
+});</code></pre>
+        </article>
+    </section>
 
 
 

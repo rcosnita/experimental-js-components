@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/button/controllers/button.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/button/controllers/button.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>define(["jquery", "factories/view!button:index.html", "utils/constants", "bootstrap"], 
+    function($, view, Constants) {
+    /**
+     * # Summary
+     *
+     * Button component provides a very simple pressable button which can provides various events in order to allow
+     * app developers to intercept button interactions.
+     * 
+     * # Events
+     *
+     * Event name | Event body | Event description
+     * ---------- | ---------- | -----------------
+     * btn:click | {} | Triggered whenever the button is pressed.
+     *
+     * In addition to above mentioned events, you should also {@link UI/Components.Component} events. 
+     * 
+     * # Examples
+     *
+     * ```html
+     * &lt;html>
+     *     &lt;head>
+     *         &lt;title>Simple app using button&lt;/title>
+     *     &lt;/head>
+     *     
+     *     &lt;body>
+     *         &lt;div data-comp-sid="btn-sample" data-comp-type="button">&lt;/div>
+     *     &lt;/body>
+     * &lt;/html>
+     * ```
+     *
+     * ```js
+     * define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
+     *     function App() {
+     *         console.log("Sample app instantiated.");
+     *
+     *         this.config = {
+     *             "btn-sample": {
+     *                 "model": new SimpleModel({"label": "Demo button."});
+     *             }
+     *         };
+     *     };
+     *
+     *     App.prototype.start = function() {
+     *         var btn = this.components["btn-sample"];
+     *
+     *         btn.on("btn:click", function() {
+     *             alert("Button clicked.");
+     *         }); 
+     *     };
+     *
+     *     return App;
+     * }
+     * ```
+     * 
+     * @public
+     * @class
+     * @constructor
+     * @memberof UI/Components
+     * @extends UI/Components.Component
+     */
+    function Button() { 
+        console.log("Button controller instantiated.");
+
+        this.config = {
+            "view": view
+        };
+    };
+
+    /**
+     * This method is invoked automatically by the framework in order to let the component to wire it's functionality. 
+     * At this stage, the component view is already binded to dom and works as expected.
+     * 
+     * @public
+     * @method
+     */
+    Button.prototype.start = function() {
+        var view = this.config.view,
+            model = this.config.model,
+            self = this;
+
+        this._wireEvents();
+
+        model.on(Constants.MODEL_PROPERTY_CHANGE_EVENT, function(changeData) {
+            if (changeData.property !== "label") {
+                return;
+            }
+
+            self.refresh();
+
+            self._wireEvents();
+        });
+    };
+
+    /**
+     * This method wires all events required for this button to work.
+     * 
+     * @private
+     * @method
+     */
+    Button.prototype._wireEvents = function() {
+        var view = this.config.view,
+            self = this;
+
+        $(view.element).find("button").click(function() {
+            self.trigger(Constants.COMPONENT_BTN_CLICK_EVENT, {});
+        });
+    };
+
+    return Button;
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">create-first-app</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sat Jun 06 2015 20:23:27 GMT+0300 (EEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
