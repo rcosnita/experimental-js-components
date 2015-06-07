@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Tutorial: create-new-components</title>
+    <title>JSDoc: Tutorial: Create new framework components</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,18 +17,86 @@
 
 <div id="main">
 
-    <h1 class="page-title">Tutorial: create-new-components</h1>
+    <h1 class="page-title">Tutorial: Create new framework components</h1>
 
     <section>
 
 <header>
     
 
-    <h2>create-new-components</h2>
+    <h2>Create new framework components</h2>
 </header>
 
 <article>
-    
+    <h1>Summary</h1><p>This tutorial is especially useful for contributors who want to develop components which can be reused by other users. During this tutorial we are going to explain what is a component and which are the minimum requirements for each components contributed to framework.</p>
+<h1>What is a component?</h1><p>A component is a collection of views, controllers and models which provide reusable features. For instance:</p>
+<ul>
+<li><a href="UI_Components.Button.html">UI/Components.Button</a></li>
+<li><a href="UI_Components.DropDown.html">UI/Components.DropDown</a></li>
+<li><a href="UI_Components.DataGrid.html">UI/Components.DataGrid</a></li>
+</ul>
+<p>represent user interface components which can be used by someone who wants to create an application.</p>
+<h1>Requirements for a new component?</h1><p>When you want to create a new component you must follow the checklist presented below:</p>
+<ul>
+<li>What functionality does the component provide?</li>
+<li>Which are the events provided by the component?</li>
+<li>How can this component be configured?</li>
+<li>What is the look &amp; feel of the component?</li>
+</ul>
+<h1>Component lifecycle</h1><p>Each component from framework has the following states in which it can be found:</p>
+<ol>
+<li>Initialized</li>
+<li>Configured</li>
+<li>Started</li>
+</ol>
+<h1>Button example</h1><p>The complete source code for button example can be found at https://github.com/rcosnita/experimental-js-components/tree/master/src/components/button</p>
+<h2>View</h2><pre class="prettyprint source lang-html"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; aria-label=&quot;Left Align&quot;>
+    &lt;span>{{model.label}}&lt;/span>
+&lt;/button></code></pre><p>The button will simply display a label. Also the button is styled using bootstrap classes.</p>
+<h2>Controller</h2><pre class="prettyprint source lang-javascript"><code>define([&quot;jquery&quot;, &quot;factories/view!button:index.html&quot;, &quot;utils/constants&quot;, &quot;bootstrap&quot;], function($, view, Constants) {
+    function Button() { 
+        console.log(&quot;Button controller instantiated.&quot;);
+
+        this.config = {
+            &quot;view&quot;: view
+        };
+    };
+
+    Button.prototype.start = function() {
+        var view = this.config.view,
+            model = this.config.model,
+            self = this;
+
+        this._wireEvents();
+
+        model.on(Constants.MODEL_PROPERTY_CHANGE_EVENT, function(changeData) {
+            if (changeData.property !== &quot;label&quot;) {
+                return;
+            }
+
+            self.refresh();
+
+            self._wireEvents();
+        });
+    };
+
+    Button.prototype._wireEvents = function() {
+        var view = this.config.view,
+            self = this;
+
+        $(view.element).find(&quot;button&quot;).click(function() {
+            self.trigger(Constants.COMPONENT_BTN_CLICK_EVENT, {});
+        });
+    };
+
+    return Button;
+});</code></pre><p>The button component wires everything during start phase. Moreover, the relation between the controller and button view is achieved during configuration phase in which button config receives button view as property.</p>
+<p>The button component must be configured from outside (the app using the button) with a model which provides the button label.</p>
+<p>For a concrete example about how to use the button component you can follow:</p>
+<ul>
+<li><a href="UI_Components.Button.html">UI/Components.Button</a></li>
+<li><a href="tutorial-create-first-app.html">Create your first application</a></li>
+</ul>
 </article>
 
 </section>
@@ -36,13 +104,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">create-first-app</a></li><li><a href="tutorial-create-new-components.html">create-new-components</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sun Jun 07 2015 16:08:15 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sun Jun 07 2015 16:27:59 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

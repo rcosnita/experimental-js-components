@@ -12,7 +12,7 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
      * ---------- | ---------- | -----------------
      * btn:click | {} | Triggered whenever the button is pressed.
      *
-     * In addition to above mentioned events, you should also {@link UI/Components.Component} events. 
+     * In addition to above mentioned events, you can also use {@link UI/Components.Component} events. 
      * 
      * # Examples
      *
