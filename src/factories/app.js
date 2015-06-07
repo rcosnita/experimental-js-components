@@ -13,6 +13,44 @@ define(["jquery", "utils/constants"], function($, Constants) {
     function App() {}
 
     /**
+     * This method must be implemented by each concrete application in order to provide the configuration logic.
+     * 
+     * @public
+     * @instance
+     * @method
+     * @abstract
+     * @return {Object} Returns a promise or a concrete json object which provides the application configuration.
+     * @example
+     * // plain JSON object configuration
+     * SampleApp.prototype.configure = function() {
+     *     return {
+     *         "selector": "div[class='sampleapp']",
+     *         "components": [
+     *             ...
+     *         ]
+     *     }
+     * };
+     *
+     * @example
+     * // lazy loaded configuration. This can be extremely useful when app configuration is dynamically loaded.
+     * SampleApp.prototype.configure = function() {
+     *     var configLoader = $.Deferred();
+     *
+     *      setTimeout(function() {
+     *          configLoader.resolve({
+     *             "selector": "div[class='sampleapp']",
+     *             "components": [
+     *                 ...
+     *             ]
+     *         });
+     *      }, 100);
+     * 
+     *     return configLoader.promise();
+     * };
+     */
+    App.configure = function() {};
+
+    /**
      * This method is used to bind the app root context and loads all children subcomponents. All physical bindings
      * are saved into components attribute.
      * 
@@ -116,9 +154,9 @@ define(["jquery", "utils/constants"], function($, Constants) {
      */
     AppPlugin.prototype.load = function(name, req, onload, config) {
         req([name], function(LoadedApp) {
-            app = new LoadedApp();
+            $.extend(LoadedApp.prototype, App.prototype);
 
-            $.extend(app, new App());
+            app = new LoadedApp();
 
             $(document).ready(function() {
                 var loadersPromise = app._bindRootContext(req),
