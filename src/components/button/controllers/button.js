@@ -28,18 +28,20 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
      * </html>
      * ```
      *
-     * ```js
+     * ```javascript
      * define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
      *     function App() {
      *         console.log("Sample app instantiated.");
+     *     };
      *
-     *         this.config = {
+     *     App.prototype.configure = function() {
+     *         return {
      *             "btn-sample": {
-     *                 "model": new SimpleModel({"label": "Demo button."});
+     *                 "model": new SimpleModel({"label": "Demo button."})
      *             }
      *         };
      *     };
-     *
+     * 
      *     App.prototype.start = function() {
      *         var btn = this.components["btn-sample"];
      *

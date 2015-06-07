@@ -38,8 +38,10 @@ define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], func
      * ```javascript
 // <custom_app>/controllers/index.js
 define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
-    function App() {
-        this.config = {
+    function App() { };
+
+    App.prototype.configure = function() {
+        return {
             "selector": "div[data-sid='app']",
             "components": {
                 "dd-task-types": {

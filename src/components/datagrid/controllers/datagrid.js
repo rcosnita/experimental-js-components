@@ -11,6 +11,70 @@ define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jque
      * ---------- | ---------- | -----------------
      * datagrid:selected-row | Model object representing selected row. | Triggered whenever a datagrid row is selected.
      *
+     * # Examples
+     *
+     * ```html
+     * <!-- <custom_app>/views/index.html -->
+     * <!DOCTYPE html>
+
+        <html>
+            <head>
+                <title>Welcome to todo application.</title>
+            </head>
+
+            <body>
+                <div data-sid="todo-app"> 
+                    <div data-comp-sid="grid-tasks" data-comp-type="datagrid"></div>
+                </div>
+            </body>
+        </html>
+     * ```
+     *
+     * ```javascript
+     * // <custom_app>/controllers/index.js
+     * define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
+        function TodoApp() { };
+
+        TodoApp.prototype.configure = function() {
+            return {
+                "selector": "div[data-sid='todo-app']",
+                "components": {
+                    "grid-tasks": {
+                        "model": new SimpleModel({
+                            "columns": [
+                                {"id": "#", "name": "#"},
+                                {"id": "firstName", "name": "First name"},
+                                {"id": "lastName", "name": "Last name"}
+                            ],
+                            "items": [
+                                new SimpleModel({"#": "1", "firstName": "Radu Viorel", "lastName": "Cosnita"}),
+                                new SimpleModel({"#": "2", "firstName": "Dan", "lastName": "Popa"}),
+                                new SimpleModel({"#": "3", "firstName": "Adriana Elena", "lastName": "Cosnita"})
+                            ]
+                        })
+                    }
+                }
+            };
+        };
+
+        TodoApp.prototype.start = function() {
+            var gridTasks = this.components["grid-tasks"];
+
+            this._wireGridTasksEvents();
+        };
+
+        TodoApp.prototype._wireGridTasksEvents = function() {
+            var gridTasks = this.components["grid-tasks"],
+                self = this;
+
+            gridTasks.on(Constants.COMPONENT_DATAGRID_ITEM_SELECTED_EVENT, function(selectedItem) {
+                console.log(selectedItem);
+            });
+        };
+
+        return TodoApp;
+    });
+     * ```
      * 
      * @public
      * @class
