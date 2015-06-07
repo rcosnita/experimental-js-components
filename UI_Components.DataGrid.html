@@ -68,6 +68,62 @@
 </tr>
 </tbody>
 </table>
+<h1>Examples</h1><pre class="prettyprint source lang-html"><code>&lt;!-- &lt;custom_app>/views/index.html -->
+&lt;!DOCTYPE html>
+
+        &lt;html>
+            &lt;head>
+                &lt;title>Welcome to todo application.&lt;/title>
+            &lt;/head>
+
+            &lt;body>
+                &lt;div data-sid=&quot;todo-app&quot;> 
+                    &lt;div data-comp-sid=&quot;grid-tasks&quot; data-comp-type=&quot;datagrid&quot;>&lt;/div>
+                &lt;/div>
+            &lt;/body>
+        &lt;/html></code></pre><pre class="prettyprint source lang-javascript"><code>// &lt;custom_app>/controllers/index.js
+define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], function(SimpleModel, Constants) {
+        function TodoApp() { };
+
+        TodoApp.prototype.configure = function() {
+            return {
+                &quot;selector&quot;: &quot;div[data-sid='todo-app']&quot;,
+                &quot;components&quot;: {
+                    &quot;grid-tasks&quot;: {
+                        &quot;model&quot;: new SimpleModel({
+                            &quot;columns&quot;: [
+                                {&quot;id&quot;: &quot;#&quot;, &quot;name&quot;: &quot;#&quot;},
+                                {&quot;id&quot;: &quot;firstName&quot;, &quot;name&quot;: &quot;First name&quot;},
+                                {&quot;id&quot;: &quot;lastName&quot;, &quot;name&quot;: &quot;Last name&quot;}
+                            ],
+                            &quot;items&quot;: [
+                                new SimpleModel({&quot;#&quot;: &quot;1&quot;, &quot;firstName&quot;: &quot;Radu Viorel&quot;, &quot;lastName&quot;: &quot;Cosnita&quot;}),
+                                new SimpleModel({&quot;#&quot;: &quot;2&quot;, &quot;firstName&quot;: &quot;Dan&quot;, &quot;lastName&quot;: &quot;Popa&quot;}),
+                                new SimpleModel({&quot;#&quot;: &quot;3&quot;, &quot;firstName&quot;: &quot;Adriana Elena&quot;, &quot;lastName&quot;: &quot;Cosnita&quot;})
+                            ]
+                        })
+                    }
+                }
+            };
+        };
+
+        TodoApp.prototype.start = function() {
+            var gridTasks = this.components[&quot;grid-tasks&quot;];
+
+            this._wireGridTasksEvents();
+        };
+
+        TodoApp.prototype._wireGridTasksEvents = function() {
+            var gridTasks = this.components[&quot;grid-tasks&quot;],
+                self = this;
+
+            gridTasks.on(Constants.COMPONENT_DATAGRID_ITEM_SELECTED_EVENT, function(selectedItem) {
+                console.log(selectedItem);
+            });
+        };
+
+        return TodoApp;
+    });</code></pre>
 </div>
 
 
@@ -111,7 +167,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_datagrid_controllers_datagrid.js.html">components/datagrid/controllers/datagrid.js</a>, <a href="components_datagrid_controllers_datagrid.js.html#line21">line 21</a>
+        <a href="components_datagrid_controllers_datagrid.js.html">components/datagrid/controllers/datagrid.js</a>, <a href="components_datagrid_controllers_datagrid.js.html#line85">line 85</a>
     </li></ul></dd>
     
 
@@ -165,6 +221,115 @@
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="configure"><span class="type-signature"></span>configure<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>This method is invoked automatically by the framework in order to give component a chance to configure itself.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="UI_Components.Component.html#configure">UI/Components.Component#configure</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_datagrid_controllers_datagrid.js.html">components/datagrid/controllers/datagrid.js</a>, <a href="components_datagrid_controllers_datagrid.js.html#line94">line 94</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the datagrid configuration containing only the view used for rendering.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
 
         
             
@@ -228,7 +393,7 @@ convenient for one way data binding algorithm.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line34">line 34</a>
+        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -310,7 +475,7 @@ convenient for one way data binding algorithm.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_datagrid_controllers_datagrid.js.html">components/datagrid/controllers/datagrid.js</a>, <a href="components_datagrid_controllers_datagrid.js.html#line48">line 48</a>
+        <a href="components_datagrid_controllers_datagrid.js.html">components/datagrid/controllers/datagrid.js</a>, <a href="components_datagrid_controllers_datagrid.js.html#line119">line 119</a>
     </li></ul></dd>
     
 
@@ -358,7 +523,7 @@ convenient for one way data binding algorithm.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sun Jun 07 2015 16:27:58 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sun Jun 07 2015 18:10:56 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>
