@@ -5,7 +5,7 @@
     },
     "opts": {
         "recurse": true,
-        "template": "node_modules/jsdoc/templates/default",
+        "template": "node_modules/grunt-jsdoc/node_modules/jsdoc/templates/default",
         "tutorials": "doc-lib/tutorials"
     },    
     "templates": {
@@ -18,7 +18,6 @@
                 ]
             }            
         },
-        "monospaceLinks": false,
-        "theme": "flatly"
+        "monospaceLinks": false
     }        
 }
