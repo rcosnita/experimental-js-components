@@ -52,6 +52,17 @@
 
 <div class="description">
     <p>This model provides a simple wrapper over a json object.</p>
+<h1>Model events</h1><p>This model does not provide any additional events. For seeing inherited events vist <a href="UI_Components_Models.Model.html">UI/Components/Models.Model</a></p>
+<h1>Examples</h1><p>In order to use a simple model you can easily inject it in your code using the example below:</p>
+<pre class="prettyprint source lang-javascript"><code>define([&quot;factories/model!simple_model&quot;], function(SimpleModel) {
+    var model = new SimpleModel({&quot;firstName&quot;: &quot;Radu&quot;, &quot;lastName&quot;: &quot;Cosnita&quot;});
+
+    model.on(&quot;model:change&quot;, function(evt) {
+        console.log(evt);
+    });
+
+    model.set(&quot;firstName&quot;, &quot;Radu Viorel&quot;);
+});</code></pre>
 </div>
 
 
@@ -95,7 +106,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_simple_model.js.html">models/simple_model.js</a>, <a href="models_simple_model.js.html#line11">line 11</a>
+        <a href="models_simple_model.js.html">models/simple_model.js</a>, <a href="models_simple_model.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
@@ -260,7 +271,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line44">line 44</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -344,6 +355,11 @@
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="UI_Components_Models.Model.html#getData">UI/Components/Models.Model#getData</a>
+    </li></ul></dd>
+    
 
     
 
@@ -364,7 +380,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_simple_model.js.html">models/simple_model.js</a>, <a href="models_simple_model.js.html#line22">line 22</a>
+        <a href="models_simple_model.js.html">models/simple_model.js</a>, <a href="models_simple_model.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -451,7 +467,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line54">line 54</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line78">line 78</a>
     </li></ul></dd>
     
 
@@ -611,7 +627,7 @@ use this instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line26">line 26</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -653,13 +669,13 @@ use this instance.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.RestApiModel.html">RestApiModel</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sun Jun 07 2015 18:10:56 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sun Jun 07 2015 19:07:52 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>
