@@ -21,4 +21,4 @@ cp -R /tmp/experimental-js-components/* .
 git add -A
 git commit -a -m "Latest version of documentation."
 
-git push origin gh-pages
+# git push origin gh-pages
