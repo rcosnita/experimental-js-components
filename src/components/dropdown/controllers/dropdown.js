@@ -79,12 +79,19 @@ define(["factories/model!simple_model", "utils/constants"], function(SimpleModel
      * @memberof UI/Components
      * @extends UI/Components.Component
      */
-    function DropDown() { 
-        this.config = {
-            "view": view
-        }
+    function DropDown() { };
 
-        console.log("DropDown controller instantiated.");
+    /**
+     * This method is automatically invoked by the framework in order to give the component a chance to configure itself.
+     * 
+     * @public
+     * @method
+     * @return {Object} dropdown configuration containing only the view used for rendering.
+     */
+    DropDown.prototype.configure = function() {
+        return {
+            "view": view
+        };
     };
 
     /**

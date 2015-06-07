@@ -60,8 +60,17 @@ define(["jquery", "factories/view!button:index.html", "utils/constants", "bootst
      */
     function Button() { 
         console.log("Button controller instantiated.");
+    };
 
-        this.config = {
+    /**
+     * This method is invoked automatically by the framework in order to configure the component instance.
+     *
+     * @public
+     * @method
+     * @return {Object} the button configuration containing only the view used.
+     */
+    Button.prototype.configure = function() {
+        return {
             "view": view
         };
     };

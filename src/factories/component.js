@@ -25,6 +25,37 @@ define(["jquery", "eventemitter", "utils/constants"],
     function Component() {};
 
     /**
+     * This method must be provided by each component in order to give it a chance to configure itself.
+     *  
+     * @public
+     * @method
+     * @instance
+     * @abstract
+     * @example
+     * // plain JSON configuration object with all information known upfront.
+     * SampleComponent.prototype.configure = function() {
+     *     return {
+     *         "view": view
+     *     }
+     * };
+     *
+     * @example
+     * // lazy configuration loading. This alternative is extremely useful when the component requires dynamic data to configure itself.
+     * SampleComponent.prototype.configure = function() {
+     *     var configLoader = $.Deferred();
+     *
+     *     setTimeout(function() {
+     *         configLoader.resolve({
+     *             "view": new Object()
+     *         });
+     *     }, 100);
+     * 
+     *     return configLoader.promise();
+     * };
+     */
+    Component.configure = function() {};
+
+    /**
      * This method allows the component to refresh with the new model data currently configured. It is extremely 
      * convenient for one way data binding algorithm. 
      * 
@@ -83,14 +114,19 @@ define(["jquery", "eventemitter", "utils/constants"],
             self = this;
 
         req([compPath], function(CompClass) {
+            $.extend(CompClass.prototype, Component.prototype);
+
             var comp = new CompClass();
 
-            $.extend(comp, new Component());
             EventEmitter.mixin(comp);
 
-            comp.__wireCommonEvents();
+            $.when(comp.configure()).then(function(compConfig) {
+                comp.config = compConfig;
 
-            onload(comp);
+                comp.__wireCommonEvents();
+
+                onload(comp);
+            });
         });
     };
 

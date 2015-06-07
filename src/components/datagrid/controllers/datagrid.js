@@ -18,12 +18,19 @@ define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jque
      * @memberof UI/Components
      * @extends UI/Components.Component
      */
-    function DataGrid() { 
-        this.config = {
+    function DataGrid() { };
+
+    /**
+     * This method is invoked automatically by the framework in order to give component a chance to configure itself.
+     * 
+     * @public
+     * @method
+     * @return {Object} the datagrid configuration containing only the view used for rendering.
+     */
+    DataGrid.prototype.configure = function() {
+        return {
             "view": view
         };
-
-        console.log("DataGrid instantiated.");
     };
 
     /**
