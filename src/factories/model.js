@@ -1,18 +1,42 @@
 define(["jquery", "eventemitter", "utils/constants"], 
     /**
+     * This namespace provides all builtin models which can be used in order to interact with data 
+     * (in memory or loaded from external data sources).
+     * 
      * @namespace UI/Components/Models
      */
     function($, EventEmitter, Constants) {
     /**
-    * This class provides the foundation for all models available. Each model inherits this
+     * This class provides the foundation for all models available. Each model inherits this
      * base model and also becomes an event emitter.
      *
+     * # Model events
+     *
+     * Event name           | Event body           | Event description
+     * -------------------- | -------------------- | -----------------
+     * model:init           | {}                   | This event tells the model to start loading data.
+     * model:init:completed | model json data      | This event is raised by the model as response to **model:init event**. The subscriber will receive the model data as body of this event.
+     * model:change         | {"property": <propertyName>, "oldValue": <oldValue", "newValue": <newValue>} | This event is raised whenever a model property has been changed.
+     * 
      * @public
      * @class
      * @constructor
      * @memberof UI/Components/Models
      */
     function Model() { }
+
+    /**
+     * This method must be overriden by each concrete model in order to provide a way to obtain underlining data
+     * from the current model.
+     * 
+     * @public
+     * @method
+     * @instance
+     * @abstract
+     * 
+     * @return {Object} the current loaded data set or a promise which will be resolved to model data.
+     */
+    Model.getData = function() {};
 
     /**
      * This method changes a given property with the new value. It also triggers a change event for components who

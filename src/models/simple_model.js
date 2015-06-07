@@ -1,6 +1,26 @@
 define(["utils/constants"], function(Constants) {
     /**
      * This model provides a simple wrapper over a json object.
+     *
+     * # Model events
+     *
+     * This model does not provide any additional events. For seeing inherited events vist {@link UI/Components/Models.Model}
+     *
+     * # Examples
+     *
+     * In order to use a simple model you can easily inject it in your code using the example below:
+     *
+     * ```javascript
+     * define(["factories/model!simple_model"], function(SimpleModel) {
+     *     var model = new SimpleModel({"firstName": "Radu", "lastName": "Cosnita"});
+     *
+     *     model.on("model:change", function(evt) {
+     *         console.log(evt);
+     *     });
+     *
+     *     model.set("firstName", "Radu Viorel");
+     * });
+     * ```
      * 
      * @public
      * @class
