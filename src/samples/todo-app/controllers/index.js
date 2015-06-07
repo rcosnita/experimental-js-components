@@ -5,8 +5,15 @@ define(["factories/model!simple_model", "utils/constants"], function(SimpleModel
      * @description
      * This is the TodoApp constructor used to start the application.
      */
-    function TodoApp() {
-        this.config = {
+    function TodoApp() { };
+
+    /**
+     * This method is invoked automatically by the framework in order to configure the application. In this phase you must
+     * configure each component your app uses as well as the selector used to bind your app to a dom element.
+     * @return {Object} A promise object or a plain json which is going to be used as configuration.
+     */
+    TodoApp.prototype.configure = function() {
+        return {
             "selector": "div[data-sid='todo-app']",
             "components": {
                 "btn-refresh": { 

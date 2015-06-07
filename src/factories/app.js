@@ -20,18 +20,26 @@ define(["jquery", "utils/constants"], function($, Constants) {
      * @method
      */ 
     App.prototype._bindRootContext = function(req) {
-        var compLoaders = [],
+        var compLoadersPromise = $.Deferred(),
+            compLoaders = [],
+            config = this.configure(),
             self = this;
 
-        this.components = {
-            "root": $(this.config.selector)
-        };
+        $.when(config).then(function(config) {
+            self.config = config;
 
-        $("*[data-comp-type]").each(function(elem, elemValue) {
-            compLoaders.push(self._createComponent(req, $(elemValue)));
+            self.components = {
+                "root": $(self.config.selector)
+            };
+
+            $("*[data-comp-type]").each(function(elem, elemValue) {
+                compLoaders.push(self._createComponent(req, $(elemValue)));
+            });
+
+            compLoadersPromise.resolve(compLoaders);
         });
 
-        return compLoaders;
+        return compLoadersPromise.promise();
     };
 
 
@@ -113,12 +121,14 @@ define(["jquery", "utils/constants"], function($, Constants) {
             $.extend(app, new App());
 
             $(document).ready(function() {
-                var loaders = app._bindRootContext(req),
+                var loadersPromise = app._bindRootContext(req),
                     resolvedLoaders = 0;
 
-                $.when.apply($, loaders).then(function() {
-                    app.start();
-                    onload(app);
+                loadersPromise.then(function(loaders) {
+                    $.when.apply($, loaders).then(function() {
+                        app.start();
+                        onload(app);
+                    });
                 });
             });
         });
