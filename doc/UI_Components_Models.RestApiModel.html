@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Model</title>
+    <title>JSDoc: Class: RestApiModel</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Model</h1>
+    <h1 class="page-title">Class: RestApiModel</h1>
 
     
 
@@ -31,7 +31,7 @@
         <h2>
             <span class="ancestors"><a href="UI_Components_Models.html">UI/Components/Models</a>.</span>
         
-        Model
+        RestApiModel
         </h2>
         
     
@@ -44,41 +44,63 @@
 
     
 
-    <h4 class="name" id="Model"><span class="type-signature"></span>new Model<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="RestApiModel"><span class="type-signature"></span>new RestApiModel<span class="signature">(apiConfig)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>This class provides the foundation for all models available. Each model inherits this
-base model and also becomes an event emitter.</p>
-<h1>Model events</h1><table>
-<thead>
-<tr>
-<th>Event name</th>
-<th>Event body</th>
-<th>Event description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>model:init</td>
-<td>{}</td>
-<td>This event tells the model to start loading data.</td>
-</tr>
-<tr>
-<td>model:init:completed</td>
-<td>model json data</td>
-<td>This event is raised by the model as response to <strong>model:init event</strong>. The subscriber will receive the model data as body of this event.</td>
-</tr>
-<tr>
-<td>model:change</td>
-<td>{&quot;property&quot;: <propertyName>, &quot;oldValue&quot;: &lt;oldValue&quot;, &quot;newValue&quot;: <newValue>}</td>
-<td>This event is raised whenever a model property has been changed.</td>
-</tr>
-</tbody>
-</table>
+    <p>This class provides a special model which can integrate external data using rest apis.</p>
+<h1>Model events</h1><h1>Examples</h1><p>This model is extremely useful for injecting data from external sources into components belonging to the framework.</p>
+<h2>Display customers into a grid</h2><p>Let's assume we have a customers api which returns customers belonging to an online store:</p>
+<pre class="prettyprint source lang-json"><code>[
+...
+{
+    &quot;customerId&quot;: 1,
+    &quot;firstName&quot;: &quot;Radu&quot;,
+    &quot;lastName&quot;: &quot;Cosnita&quot;
+},
+...
+]</code></pre><p>Below you can find a simple example of how that api list data can be easily displayed in a datagrid component. 
+Grid columns can be automatically ordered using the api.</p>
+<pre class="prettyprint source lang-javascript"><code>define([&quot;factories/model!simple_model&quot;, &quot;factories/model!rest_model&quot;], function(SimpleModel, RestModel) {
+
+ function App() { 
+     this._customersModel = new RestModel({
+         &quot;url&quot;: &quot;/webresources/api/v3/sites/current/customers&quot;,
+         &quot;name&quot;: &quot;customers&quot;,
+         &quot;version&quot;: &quot;v3&quot;
+     });
+ };
+
+ App.prototype.configure = function() {
+     var gridModel = new SimpleModel({
+         &quot;columns&quot;: [
+             {&quot;id&quot;: &quot;customerId&quot;, &quot;name&quot;: &quot;Customer id&quot;},
+             {&quot;id&quot;: &quot;firstName&quot;, &quot;name&quot;: &quot;Customer first name&quot;},
+             {&quot;id&quot;: &quot;lastName&quot;, &quot;name&quot;: &quot;Customer last name&quot;},
+             {&quot;id&quot;: &quot;customer.address.street&quot;, &quot;name&quot;: &quot;Address street&quot;}
+         ],
+         &quot;items&quot;: this._customersModel
+     });
+
+     return {
+         &quot;selector&quot;: &quot;div[data-sid='todo-app']&quot;,
+         &quot;components&quot;: {
+             &quot;grid-customers&quot;: {
+                 &quot;model&quot;: gridModel
+             }
+         }
+     };
+ };
+
+ App.prototype.start = function() {
+     this._customersModel.trigger(&quot;model:init&quot;, {});
+ };
+
+ return App;
+});</code></pre>
 </div>
 
 
@@ -87,6 +109,150 @@ base model and also becomes an event emitter.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>apiConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Api configuration used to describe the api this model will integrate.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The url of the api integrated by this model.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the api integrated by this model.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>version</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The version of the api integrated by this model.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -122,7 +288,7 @@ base model and also becomes an event emitter.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line26">line 26</a>
+        <a href="models_rest_model.js.html">models/rest_model.js</a>, <a href="models_rest_model.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -150,6 +316,17 @@ base model and also becomes an event emitter.</p>
 
     
     </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="UI_Components_Models.Model.html">UI/Components/Models.Model</a></li>
+    </ul>
+
 
     
 
@@ -248,6 +425,11 @@ base model and also becomes an event emitter.</p>
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="UI_Components_Models.Model.html#get">UI/Components/Models.Model#get</a>
+    </li></ul></dd>
     
 
     
@@ -354,6 +536,11 @@ from the current model.</p>
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="UI_Components_Models.Model.html#getData">UI/Components/Models.Model#getData</a>
+    </li></ul></dd>
+    
 
     
 
@@ -457,6 +644,11 @@ from the current model.</p>
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="UI_Components_Models.Model.html#isModel">UI/Components/Models.Model#isModel</a>
+    </li></ul></dd>
     
 
     
@@ -612,6 +804,11 @@ use this instance.</p>
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="UI_Components_Models.Model.html#set">UI/Components/Models.Model#set</a>
+    </li></ul></dd>
     
 
     
