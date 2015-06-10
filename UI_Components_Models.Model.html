@@ -53,7 +53,10 @@
 <div class="description">
     <p>This class provides the foundation for all models available. Each model inherits this
 base model and also becomes an event emitter.</p>
-<h1>Model events</h1><table>
+<h1>Lifecycle</h1><p>Each model has a predefined set of states which can be triggered through events. Take a look at the diagram
+below in order to understand how it works.</p>
+<p><img src="static/images/models/model_state_machine.png" alt="Model lifecycle"></p>
+<h2>Events</h2><table>
 <thead>
 <tr>
 <th>Event name</th>
@@ -77,8 +80,22 @@ base model and also becomes an event emitter.</p>
 <td>{&quot;property&quot;: <propertyName>, &quot;oldValue&quot;: &lt;oldValue&quot;, &quot;newValue&quot;: <newValue>}</td>
 <td>This event is raised whenever a model property has been changed.</td>
 </tr>
+<tr>
+<td>model:validate</td>
+<td>{}</td>
+<td>This event triggers model validation for the current state.</td>
+</tr>
+<tr>
+<td>model:validate:completed</td>
+<td>{&quot;validation&quot;: {&quot;valid&quot;: false, &quot;errors&quot;: []}}</td>
+<td>This event is triggered by the model in order to notify consumers about model validation result.</td>
+</tr>
 </tbody>
 </table>
+<h2>Model validation</h2><p>Each model validation can be triggered by:</p>
+<ol>
+<li>A consumer of the model triggers a <strong>model:validate</strong> event. Most of the time this will be extremely useful for <a href="UI_Components.Component.html">UI/Components.Component</a> which will trigger model validation based on component business logic.</li>
+</ol>
 </div>
 
 
@@ -122,7 +139,7 @@ base model and also becomes an event emitter.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line26">line 26</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line41">line 41</a>
     </li></ul></dd>
     
 
@@ -271,7 +288,7 @@ base model and also becomes an event emitter.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line68">line 68</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line106">line 106</a>
     </li></ul></dd>
     
 
@@ -376,7 +393,7 @@ from the current model.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line39">line 39</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
@@ -480,7 +497,7 @@ from the current model.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line78">line 78</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line116">line 116</a>
     </li></ul></dd>
     
 
@@ -635,7 +652,7 @@ use this instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line50">line 50</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -662,6 +679,126 @@ use this instance.</p>
 
 
         
+            
+
+    
+
+    <h4 class="name" id="validate"><span class="type-signature">(abstract) </span>validate<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>This method must be overriden by each concrete model which wants to provide validation logic.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>a promise which provides validation result when resolved.</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>CustomModel.prototype.validate = function() {
+    var validationLoader = $.Deferred();
+
+    setTimeout(function() {
+        validationLoader.resolve({
+            "valid": true,
+            "errors": []
+        });
+    }, 100);
+
+    return validationLoader.promise();
+};</code></pre>
+
+
+
+        
     
 
     
@@ -683,7 +820,7 @@ use this instance.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Wed Jun 10 2015 10:44:34 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Wed Jun 10 2015 15:50:43 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>
