@@ -73,8 +73,10 @@ In the above code take a look at how components are defined within the view:
 
 ```javascript
 define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
-    function TodoApp() {
-        this.config = {
+    function TodoApp() { };
+
+    TodoApp.prototype.configure = function() {
+        return {
             "selector": "div[data-sid='todo-app']",
             "components": {
                 "btn-refresh": { 
