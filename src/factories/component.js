@@ -11,11 +11,18 @@ define(["jquery", "eventemitter", "utils/constants"],
      * has several builtin events presented below.
      *
      * # Events
+     * 
      * Event name | Event body | Event description
      * ---------- | ---------- | -----------------
      * comp:show | {} | Each component can receive this event in order to show in viewport.
      * comp:hide | {} | Each component can receive this event in order to hide from viewport.
      * comp:reload | {} | This is a custom event which can be used by component developers in order to reload and rerender the component. Usually it is recommended to avoid such an aggresive event because performance might be affected.
+     *
+     * # Validation
+     *
+     * Each component will intercept validation events triggered by the underlining model. Every error is handled implicitly 
+     * and displayed to user in a unified way. For more information about model validation read {@link UI/Components/Models.Model}
+     * 
      *
      * @class
      * @constructor
@@ -75,6 +82,32 @@ define(["jquery", "eventemitter", "utils/constants"],
     };
 
     /**
+     * This method can be overriden in order to provide custom logic for implementing components. Each concrete component 
+     * can implement this method in order to provide custom validation logic.
+     * 
+     * @public
+     * @method
+     * @instance
+     * @abstract
+     * @return {Promise} A jquery promise which provides validation result when resolved.
+     * @example
+     * MyComponent.prototype.validate = function() {
+     *     var validationResolver = $.Deferred(),
+     *         model = this.config.model;
+     *
+     *     $.get({"url": "/validate?a=" + model.get("property1")}).then(function(result) {
+     *         validationResolver.resolve({
+     *             "valid": true,
+     *             "errors": []
+     *         });
+     *     });
+     * 
+     *     return validationResolver.promise();
+     * };
+     */
+    Component.validate = function() { };
+
+    /**
      * This method is responsible for wiring common components events (e.g: show / hide events).
      * 
      * @private
@@ -91,6 +124,26 @@ define(["jquery", "eventemitter", "utils/constants"],
         this.on(Constants.COMPONENT_HIDE_EVENT, function() {
             self.config.view.element.hide();
             self.config.model.set(Constants.MODEL_PROPERTY_VISIBLE, false);
+        });
+
+        this.on(Constants.COMPONENT_VALIDATE_EVENT, function() {
+            if (self.validate) {
+                var result = self.validate();
+
+                result.always(function(validationResult) {
+                    self.triggers(Constants.COMPONENT_VALIDATE_COMPLETED_EVENT, validationResult);
+                });
+
+                return;
+            }
+
+            var model = self.config.model;
+
+            model.triggers(Constants.MODEL_VALIDATE_EVENT, {});
+
+            model.on(Constants.MODEL_VALIDATE_COMPLETED_EVENT, function(validationResult) {
+                self.triggers(Constants.COMPONENT_VALIDATE_COMPLETED_EVENT, validationResult);
+            });
         });
     };    
 

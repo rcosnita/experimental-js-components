@@ -31,6 +31,7 @@ define(["utils/constants"], function(Constants) {
     function SimpleModel(json) {
         this._json = json || {};
 
+        this.__wireCommonEvents
         this._wireEvents();
     };
 

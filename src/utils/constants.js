@@ -53,6 +53,18 @@ define(function() {
 
         /**
          * @memberof UI/Components/Constants
+         * @constants {String} MODEL_VALIDATE_EVENT The model validate event name.
+         */
+        MODEL_VALIDATE_EVENT: "model:validate",
+
+        /**
+         * @memberof UI/Components/Constants
+         * @constants {String} MODEL_VALIDATE_COMPLETED_EVENT The model validate completed event name.
+         */
+        MODEL_VALIDATE_COMPLETED_EVENT: "model:validate:completed",
+
+        /**
+         * @memberof UI/Components/Constants
          * @constant {String} MODEL_PROPERTY_VISIBLE The model property name where visible state is stored.
          */
         MODEL_PROPERTY_VISIBLE: "visible",
@@ -74,6 +86,18 @@ define(function() {
          * @constant {String} COMPONENT_RELOAD_EVENT The component reload event name.
          */
         COMPONENT_RELOAD_EVENT: "comp:reload",
+
+        /**
+         * @memberof UI/Components/Constants
+         * @constant {String} COMPONENT_VALIDATE_EVENT The component validate event name.
+         */
+        COMPONENT_VALIDATE_EVENT: "comp:validate",
+
+        /**
+         * @memberof UI/Components/Constants
+         * @constant {String} COMPONENT_VALIDATE_COMPLETED_EVENT: The validate completed event name.
+         */
+        COMPONENT_VALIDATE_COMPLETED_EVENT: "comp:validate:completed",
 
         /**
          * @memberof UI/Components/Constants

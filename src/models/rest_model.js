@@ -77,7 +77,7 @@ define(function() {
      * @extends UI/Components/Models.Model
      */
     function RestApiModel(apiConfig) {
-
+          this.__wireCommonEvents();
     };
 
     return RestApiModel

@@ -10,14 +10,14 @@ define(["jquery", "eventemitter", "utils/constants"],
      * This class provides the foundation for all models available. Each model inherits this
      * base model and also becomes an event emitter.
      *
-     * # Model lifecycle
+     * # Lifecycle
      *
      * Each model has a predefined set of states which can be triggered through events. Take a look at the diagram
      * below in order to understand how it works.
      *
      * ![Model lifecycle](static/images/models/model_state_machine.png)
      * 
-     * ## Model events
+     * ## Events
      *
      * Event name           | Event body           | Event description
      * -------------------- | -------------------- | -----------------
@@ -29,9 +29,8 @@ define(["jquery", "eventemitter", "utils/constants"],
      *
      * ## Model validation
      *
-     * Each model validation can be triggered in two ways:
+     * Each model validation can be triggered by:
      *
-     * 1. One property from the model is changed using **set** method.
      * 1. A consumer of the model triggers a **model:validate** event. Most of the time this will be extremely useful for {@link UI/Components.Component} which will trigger model validation based on component business logic.
      * 
      * @public
@@ -49,10 +48,33 @@ define(["jquery", "eventemitter", "utils/constants"],
      * @method
      * @instance
      * @abstract
-     * 
      * @return {Object} the current loaded data set or a promise which will be resolved to model data.
      */
     Model.getData = function() {};
+
+    /**
+     * This method must be overriden by each concrete model which wants to provide validation logic.
+     *
+     * @public
+     * @instance
+     * @method
+     * @abstract
+     * @return {Promise} a promise which provides validation result when resolved.
+     * @example
+     * CustomModel.prototype.validate = function() {
+     *     var validationLoader = $.Deferred();
+     *
+     *     setTimeout(function() {
+     *         validationLoader.resolve({
+     *             "valid": true,
+     *             "errors": []
+     *         });
+     *     }, 100);
+     * 
+     *     return validationLoader.promise();
+     * };
+     */
+    Model.validate = function() {};
 
     /**
      * This method changes a given property with the new value. It also triggers a change event for components who
@@ -95,6 +117,28 @@ define(["jquery", "eventemitter", "utils/constants"],
         return true;
     };
 
+    /**
+     * This method wires common events for all models. By design, it must be manually invoked by each concrete model.
+     * 
+     * @private
+     * @method
+     */
+    Model.prototype.__wireCommonEvents = function() {
+        var self = this;
+
+        this.on(Constants.MODEL_VALIDATE_EVENT, function() {
+            if (!self.validate) {
+                return;
+            }
+
+            var validationLoader = self.validate();
+
+            validationLoader.always(function(validationResult) {
+                self.triggers(Constants.MODEL_VALIDATE_COMPLETED_EVENT, validationResult);
+            });
+        });
+    };
+
     EventEmitter.mixin(Model.prototype);
 
     /**
@@ -118,7 +162,7 @@ define(["jquery", "eventemitter", "utils/constants"],
         var modelPath = "models/" + name;
 
         req([modelPath], function(ModelCls) {
-            $.extend(ModelCls.prototype, new Model());
+            $.extend(ModelCls.prototype, Model.prototype);
 
             onload(ModelCls);
         });
