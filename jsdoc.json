@@ -14,7 +14,8 @@
             "outputSourceFiles": true,
             "staticFiles": {
                 "include": [
-                    "./doc-lib/tutorials"
+                    "./doc-lib/tutorials",
+                    "./doc-lib/static"
                 ]
             }            
         },

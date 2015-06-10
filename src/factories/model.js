@@ -10,13 +10,29 @@ define(["jquery", "eventemitter", "utils/constants"],
      * This class provides the foundation for all models available. Each model inherits this
      * base model and also becomes an event emitter.
      *
-     * # Model events
+     * # Model lifecycle
+     *
+     * Each model has a predefined set of states which can be triggered through events. Take a look at the diagram
+     * below in order to understand how it works.
+     *
+     * ![Model lifecycle](static/images/models/model_state_machine.png)
+     * 
+     * ## Model events
      *
      * Event name           | Event body           | Event description
      * -------------------- | -------------------- | -----------------
      * model:init           | {}                   | This event tells the model to start loading data.
      * model:init:completed | model json data      | This event is raised by the model as response to **model:init event**. The subscriber will receive the model data as body of this event.
      * model:change         | {"property": <propertyName>, "oldValue": <oldValue", "newValue": <newValue>} | This event is raised whenever a model property has been changed.
+     * model:validate       | {}                   | This event triggers model validation for the current state.
+     * model:validate:completed |  {"validation": {"valid": false, "errors": []}}                | This event is triggered by the model in order to notify consumers about model validation result.
+     *
+     * ## Model validation
+     *
+     * Each model validation can be triggered in two ways:
+     *
+     * 1. One property from the model is changed using **set** method.
+     * 1. A consumer of the model triggers a **model:validate** event. Most of the time this will be extremely useful for {@link UI/Components.Component} which will trigger model validation based on component business logic.
      * 
      * @public
      * @class
