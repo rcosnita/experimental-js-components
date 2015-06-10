@@ -18,3 +18,7 @@ In this experiment development is based on components. A component is composed o
 A component can also consume other components but can rely only on the standardized events. All other layers of a component (models, views) must be considered internal implementation details.
 
 In order to understand what a component provides it should be necessary only to understand which are the events provided by the component.
+
+# More information
+
+http://rcosnita.github.io/experimental-js-components/
