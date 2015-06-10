@@ -187,7 +187,8 @@ Each application controller must defines its dependencies using requirejs. In th
 For instance,
 
 ```javascript
-        this.config = {
+        // configure method snippet
+        return {
             "selector": "div[data-sid='todo-app']",
             "components": {
                 "btn-refresh": { 

@@ -73,8 +73,10 @@ In the above code take a look at how components are defined within the view:
 
 ```javascript
 define(["factories/model!simple_model", "utils/constants"], function(SimpleModel, Constants) {
-    function TodoApp() {
-        this.config = {
+    function TodoApp() { };
+
+    TodoApp.prototype.configure = function() {
+        return {
             "selector": "div[data-sid='todo-app']",
             "components": {
                 "btn-refresh": { 
@@ -185,7 +187,8 @@ Each application controller must defines its dependencies using requirejs. In th
 For instance,
 
 ```javascript
-        this.config = {
+        // configure method snippet
+        return {
             "selector": "div[data-sid='todo-app']",
             "components": {
                 "btn-refresh": { 
