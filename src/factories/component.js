@@ -22,6 +22,8 @@ define(["jquery", "eventemitter", "utils/constants"],
      *
      * Each component will intercept validation events triggered by the underlining model. Every error is handled implicitly 
      * and displayed to user in a unified way. For more information about model validation read {@link UI/Components/Models.Model}
+     *
+     * In addition, each component can provide custom validation logic by overriding method **validate**. If method **validate** is overriden then the default validation logic (delegate to model validation) is replaced by actions from **validate** method.
      * 
      *
      * @class

@@ -80,5 +80,5 @@ define(function() {
           this.__wireCommonEvents();
     };
 
-    return RestApiModel
+    return RestApiModel;
 });
