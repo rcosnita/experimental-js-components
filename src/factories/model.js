@@ -26,6 +26,8 @@ define(["jquery", "eventemitter", "utils/constants"],
      * model:change         | {"property": <propertyName>, "oldValue": <oldValue", "newValue": <newValue>} | This event is raised whenever a model property has been changed.
      * model:validate       | {}                   | This event triggers model validation for the current state.
      * model:validate:completed |  {"validation": {"valid": false, "errors": []}}                | This event is triggered by the model in order to notify consumers about model validation result.
+     * model:filter:init | <filter object> | This event can be triggered by any model consumer in order to trigger a filtering.
+     * model:filter:completed | <model data> | This event is emitted by the model once the filtering was successful.
      *
      * ## Model validation
      *

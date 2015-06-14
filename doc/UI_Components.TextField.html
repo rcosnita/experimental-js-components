@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Component</title>
+    <title>JSDoc: Class: TextField</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Component</h1>
+    <h1 class="page-title">Class: TextField</h1>
 
     
 
@@ -31,7 +31,7 @@
         <h2>
             <span class="ancestors"><a href="UI_Components.html">UI/Components</a>.</span>
         
-        Component
+        TextField
         </h2>
         
     
@@ -44,54 +44,15 @@
 
     
 
-    <h4 class="name" id="Component"><span class="type-signature"></span>new Component<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="TextField"><span class="type-signature"></span>new TextField<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <h1>Summary</h1><p>This class provides the foundation for each component available into framework. Each component from framework
-has several builtin events presented below.</p>
-<h1>Events</h1><table>
-<thead>
-<tr>
-<th>Event name</th>
-<th>Event body</th>
-<th>Event description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>comp:show</td>
-<td>{}</td>
-<td>Each component can receive this event in order to show in viewport.</td>
-</tr>
-<tr>
-<td>comp:hide</td>
-<td>{}</td>
-<td>Each component can receive this event in order to hide from viewport.</td>
-</tr>
-<tr>
-<td>comp:reload</td>
-<td>{}</td>
-<td>This is a custom event which can be used by component developers in order to reload and rerender the component. Usually it is recommended to avoid such an aggresive event because performance might be affected.</td>
-</tr>
-<tr>
-<td>comp:validate</td>
-<td>{}</td>
-<td>Each component can receive this event in order to trigger validation. Once the validation is completed a <strong>comp:validate:completed</strong> event will be emitted by thecomponent.</td>
-</tr>
-<tr>
-<td>comp:validate:completed</td>
-<td>{&quot;valid&quot;: true, &quot;errors&quot;: []}</td>
-<td>Each component emit a <strong>comp:validate:completed</strong> event once the validation logic has been executed. The event body can be used to determine if validation was successful and if not which where the errors.</td>
-</tr>
-</tbody>
-</table>
-<h1>Validation</h1><p>Each component will intercept validation events triggered by the underlining model. Every error is handled implicitly 
-and displayed to user in a unified way. For more information about model validation read <a href="UI_Components_Models.Model.html">UI/Components/Models.Model</a></p>
-<p>In addition, each component can provide custom validation logic by overriding method <strong>validate</strong>. If method <strong>validate</strong> is overriden then the default validation logic (delegate to model validation) is replaced by actions from <strong>validate</strong> method.</p>
+    <h1>Summary</h1><p>Textfield provides a simple input which accepts data from keyboard. It binds the value to the given model.
+In order to be notified about this component internal state change it's enough to listen on model changes.</p>
 </div>
 
 
@@ -135,7 +96,7 @@ and displayed to user in a unified way. For more information about model validat
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line36">line 36</a>
+        <a href="components_textfield_controllers_textfield.js.html">components/textfield/controllers/textfield.js</a>, <a href="components_textfield_controllers_textfield.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -165,6 +126,17 @@ and displayed to user in a unified way. For more information about model validat
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="UI_Components.Component.html">UI/Components.Component</a></li>
+    </ul>
+
+
+    
 
     
 
@@ -184,14 +156,14 @@ and displayed to user in a unified way. For more information about model validat
 
     
 
-    <h4 class="name" id="configure"><span class="type-signature">(abstract) </span>configure<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="configure"><span class="type-signature"></span>configure<span class="signature">()</span><span class="type-signature"> &rarr; {JSON}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>This method must be provided by each component in order to give it a chance to configure itself.</p>
+    <p>This method is invoked automatically by the framework in order to configure the textfield.</p>
 </div>
 
 
@@ -215,6 +187,11 @@ and displayed to user in a unified way. For more information about model validat
     
 
     
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="UI_Components.Component.html#configure">UI/Components.Component#configure</a>
+    </li></ul></dd>
+    
 
     
 
@@ -235,7 +212,7 @@ and displayed to user in a unified way. For more information about model validat
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line67">line 67</a>
+        <a href="components_textfield_controllers_textfield.js.html">components/textfield/controllers/textfield.js</a>, <a href="components_textfield_controllers_textfield.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -258,29 +235,28 @@ and displayed to user in a unified way. For more information about model validat
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Textfield synchronous configuration.</p>
+</div>
 
 
-    <h5>Examples</h5>
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">JSON</span>
+
+
+    </dd>
+</dl>
+
     
-    <pre class="prettyprint"><code>// plain JSON configuration object with all information known upfront.
-SampleComponent.prototype.configure = function() {
-    return {
-        "view": view
-    }
-};</code></pre>
-
-    <pre class="prettyprint"><code>// lazy configuration loading. This alternative is extremely useful when the component requires dynamic data to configure itself.
-SampleComponent.prototype.configure = function() {
-    var configLoader = $.Deferred();
-
-    setTimeout(function() {
-        configLoader.resolve({
-            "view": new Object()
-        });
-    }, 100);
-
-    return configLoader.promise();
-};</code></pre>
 
 
 
@@ -319,6 +295,11 @@ convenient for one way data binding algorithm.</p>
     
 
     
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="UI_Components.Component.html#refresh">UI/Components.Component#refresh</a>
+    </li></ul></dd>
+    
 
     
 
@@ -342,6 +323,88 @@ convenient for one way data binding algorithm.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line76">line 76</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>This method binds the events on the textfield dom element and set the values on the underlining model accordingly.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_textfield_controllers_textfield.js.html">components/textfield/controllers/textfield.js</a>, <a href="components_textfield_controllers_textfield.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -401,6 +464,11 @@ can implement this method in order to provide custom validation logic.</p>
 
     
 
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="UI_Components.Component.html#validate">UI/Components.Component#validate</a>
+    </li></ul></dd>
     
 
     
