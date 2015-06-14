@@ -31,7 +31,7 @@ Each component from framework has the following states in which it can be found:
 
 # Button example
 
-The complete source code for button example can be found at https://github.com/rcosnita/experimental-js-components/tree/master/src/components/button
+The complete source code for button example can be found at [Button component](https://github.com/rcosnita/experimental-js-components/tree/master/src/components/button).
 
 ## View
 

@@ -17,6 +17,8 @@ define(["jquery", "eventemitter", "utils/constants"],
      * comp:show | {} | Each component can receive this event in order to show in viewport.
      * comp:hide | {} | Each component can receive this event in order to hide from viewport.
      * comp:reload | {} | This is a custom event which can be used by component developers in order to reload and rerender the component. Usually it is recommended to avoid such an aggresive event because performance might be affected.
+     * comp:validate | {} | Each component can receive this event in order to trigger validation. Once the validation is completed a **comp:validate:completed** event will be emitted by thecomponent.
+     * comp:validate:completed | {"valid": true, "errors": []} | Each component emit a **comp:validate:completed** event once the validation logic has been executed. The event body can be used to determine if validation was successful and if not which where the errors.
      *
      * # Validation
      *

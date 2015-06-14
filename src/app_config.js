@@ -6,13 +6,11 @@ requirejs.config({
         "text": "../../../lib/text-2.0.14",
         "eventemitter": "../../../lib/microevent",
         "handlebars-lib": "../../../lib/handlebars-3.0.3",
-        "handlebars": "../../utils/handlebars",
+        "handlebars": "../../../src/utils/handlebars",
         "bootstrap": "../../../lib/bootstrap-3.3.4/js/bootstrap",
-        "models": "../../models",
-        "components": "../../components",
-        "factories": "../../factories",
-        "utils": "../../utils"
+        "models": "../../../src/models",
+        "components": "../../../src/components",
+        "factories": "../../../src/factories",
+        "utils": "../../../src/utils"
     }
 });
-
-requirejs(["factories/app!controllers/index"]);
