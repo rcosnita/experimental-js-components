@@ -1,0 +1,1 @@
+requirejs(["factories/app!controllers/index"]);

@@ -9,7 +9,9 @@
         </thead>
 
         <tbody>
-        {{#each model.items}}
+        {{#assign this "grid_curr_model" model.items "getData"}}{{/assign}}
+
+        {{#each this.grid_curr_model.items}}
             <tr data-item-index="{{@index}}">
             {{#each ../model.columns}}
                 <td>{{getProperty ../this this.id}}</td>

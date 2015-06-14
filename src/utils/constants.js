@@ -71,6 +71,18 @@ define(function() {
 
         /**
          * @memberof UI/Components/Constants
+         * @constant {String} MODEL_INIT_FILTER_EVENT The model event used for triggering filtering. Not all provided models support this event.
+         */
+        MODEL_INIT_FILTER_EVENT: "model:filter:init",
+
+        /**
+         * @memberof UI/Components/Constants
+         * @constant {String} MODEL_INIT_FILTER_COMPLETED_EVENT This event is triggered by models which support filtering as response to a {@link UI/Components/Constants.MODEL_INIT_FILTER_EVENT} event.
+         */
+        MODEL_INIT_FILTER_COMPLETED_EVENT: "model:filter:completed",
+
+        /**
+         * @memberof UI/Components/Constants
          * @constant {String} COMPONENT_SHOW_EVENT The component show event name.
          */
         COMPONENT_SHOW_EVENT: "comp:show",

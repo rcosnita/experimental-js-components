@@ -1,0 +1,9 @@
+{
+    "items": [
+        {"customerId": 1, "firstName": "Radu Viorel", "lastName": "Cosnita"},
+        {"customerId": 2, "firstName": "John", "lastName": "Doe"},
+        {"customerId": 3, "firstName": "Jimmy", "lastName": "Hoffa"},
+        {"customerId": 4, "firstName": "Jimi", "lastName": "Hendrix"}
+    ],
+    "totalItemsCount": 4
+}
