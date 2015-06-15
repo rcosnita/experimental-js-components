@@ -25,7 +25,7 @@ define(["jquery", "factories/view!textfield:index.html", "utils/constants"], fun
      *         "components": {
      *              "tfQuickSearch": {
                         "model": this._filterModel
-                    },
+                    }
      *         }
      *     };
      * };
