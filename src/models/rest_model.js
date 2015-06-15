@@ -4,6 +4,8 @@ define(["utils/constants"], function(Constants) {
      *
      * # Model events
      *
+     * This model supports all events inherited from {@link UI/Components/Models.Model}.
+     *
      * # Examples
      *
      * This model is extremely useful for injecting data from external sources into components belonging to the framework.
@@ -28,15 +30,11 @@ define(["utils/constants"], function(Constants) {
      * Grid columns can be automatically ordered using the api.
      * 
      * ```javascript
-     * define(["factories/model!simple_model", "factories/model!rest_model"], function(SimpleModel, RestModel) {
+     * define(["factories/model!simple_model", 
+     *      "factories/model!rest_model:customers:v3:/webresources/api/v3/sites/current/customers"], 
+     * function(SimpleModel, customersModel) {
      *
-     *  function App() { 
-     *      this._customersModel = new RestModel({
-     *          "url": "/webresources/api/v3/sites/current/customers",
-     *          "name": "customers",
-     *          "version": "v3"
-     *      });
-     *  };
+     *  function App() { };
      *
      *  App.prototype.configure = function() {
      *      var gridModel = new SimpleModel({
@@ -46,7 +44,7 @@ define(["utils/constants"], function(Constants) {
      *              {"id": "lastName", "name": "Customer last name"},
      *              {"id": "customer.address.street", "name": "Address street"}
      *          ],
-     *          "items": this._customersModel
+     *          "items": customersModel
      *      });
      * 
      *      return {
@@ -60,7 +58,7 @@ define(["utils/constants"], function(Constants) {
      *  };
      *
      *  App.prototype.start = function() {
-     *      this._customersModel.trigger("model:init", {});
+     *      customersModel.trigger("model:init", {});
      *  };
      * 
      *  return App;

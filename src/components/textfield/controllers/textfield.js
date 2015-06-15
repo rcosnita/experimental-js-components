@@ -5,6 +5,42 @@ define(["jquery", "factories/view!textfield:index.html", "utils/constants"], fun
      * Textfield provides a simple input which accepts data from keyboard. It binds the value to the given model.
      * In order to be notified about this component internal state change it's enough to listen on model changes.
      *
+     * # Examples
+     *
+     * ## Display latest value from textfield (while user types)
+     *
+     * ```javascript
+     * // this example assumes the component is configured correctly and binded to model tfModel.
+     *
+     * function App() {
+     *     this._filterModel = new SimpleModel({
+     *         "placeholder": "Type your query here ...",
+     *         "value": ""
+     *     });
+     * };
+     * 
+     * App.prototype.configure = function() {
+     *     return {
+     *         "selector": "div[data-sid='sample-app']",
+     *         "components": {
+     *              "tfQuickSearch": {
+                        "model": this._filterModel
+                    },
+     *         }
+     *     };
+     * };
+     * 
+     * App.prototype.start = function() {
+     *     this._filterModel.on("model:change", function(evt) {
+     *         if (evt.property != "value") {
+     *             return;
+     *         }
+     *
+     *         console.log(evt.newValue);
+     *     });
+     * };
+     * ```
+     * 
      * @public
      * @class
      * @constructor
