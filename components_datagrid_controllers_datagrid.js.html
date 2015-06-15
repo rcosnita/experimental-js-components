@@ -26,8 +26,8 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>define(["jquery", "factories/view!datagrid:index.html", "utils/constants", "jquery-ui"], 
-    function($, view, Constants) {
+            <pre class="prettyprint source linenums"><code>define(["jquery", "factories/view!datagrid:index.html", "factories/model!simple_model", "utils/constants", "jquery-ui"], 
+    function($, view, SimpleModel, Constants) {
     /**
      * # Summary
      * 
@@ -146,9 +146,15 @@
      */
     DataGrid.prototype.start = function() {
         var gridElement = $(this.config.view.element),
-            model = this.config.model;
+            model = this.config.model,
+            self = this;
 
+        this._wireConfigModelEvents(model);
         this._wireSelectItemEvent(gridElement, model);
+
+        this.on(Constants.COMPONENT_RELOAD_EVENT, function() {
+            self._wireSelectItemEvent(gridElement, model);
+        });
 
         console.log("DataGrid started.");
     };
@@ -171,10 +177,57 @@
                 return;
             }
 
-            var item = model.get(self._ITEMS_MODEL_PROPERTY_NAME)[parseInt(itemIdx)];
+            var item = model.getData().items.get(self._ITEMS_MODEL_PROPERTY_NAME)[parseInt(itemIdx)];
 
             self.trigger(Constants.COMPONENT_DATAGRID_ITEM_SELECTED_EVENT, item);
         });
+    };
+
+    /**
+     * This method intercepts all events emitted by the configuration model and wire them to rendering actions into datagrid.
+     */
+    DataGrid.prototype._wireConfigModelEvents = function(configModel) {
+        var itemsModel = configModel.getData().items,
+            self = this;
+
+        configModel.getData().items = itemsModel = this._getModelFromArray(itemsModel);
+
+
+        if (!itemsModel || !itemsModel.isModel()) {
+            return;
+        }
+
+        itemsModel.on(Constants.MODEL_INIT_COMPLETED_EVENT, function(data) {
+            self.refresh();
+        });
+
+        itemsModel.trigger(Constants.MODEL_INIT_EVENT, {});
+
+        itemsModel.on(Constants.MODEL_INIT_FILTER_COMPLETED_EVENT, function() {
+           self.refresh();
+        });
+    };
+
+    /**
+     * This method transforms the given itemsModel into a simple model if and only the given itemsModel is a simple array.
+     * 
+     * @param  {Object} itemsModel A potential array object which we want to transform into a model.
+     * @return {UI/Components/Models.Model} The newly constructed model or the initial model.
+     */
+    DataGrid.prototype._getModelFromArray = function(itemsModel) {
+        if (!(itemsModel instanceof Array)) {
+            return itemsModel;
+        }
+
+        var items = [];
+
+        if (itemsModel &amp;&amp; itemsModel.length > 0 &amp;&amp; itemsModel[0] instanceof SimpleModel) {
+            for (var idx = 0; idx &lt; itemsModel.length; idx++) {
+                items.push(itemsModel[idx].getData());
+            }
+        } 
+
+        return new SimpleModel({"items": items, "totalItemsCount": itemsModel.length});        
     };
 
     return DataGrid;
@@ -188,13 +241,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.RestApiModel.html">RestApiModel</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components.TextField.html">TextField</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.RestApiModel.html">RestApiModel</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Wed Jun 10 2015 15:50:42 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Mon Jun 15 2015 10:42:28 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

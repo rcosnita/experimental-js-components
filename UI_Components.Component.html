@@ -77,6 +77,16 @@ has several builtin events presented below.</p>
 <td>{}</td>
 <td>This is a custom event which can be used by component developers in order to reload and rerender the component. Usually it is recommended to avoid such an aggresive event because performance might be affected.</td>
 </tr>
+<tr>
+<td>comp:validate</td>
+<td>{}</td>
+<td>Each component can receive this event in order to trigger validation. Once the validation is completed a <strong>comp:validate:completed</strong> event will be emitted by thecomponent.</td>
+</tr>
+<tr>
+<td>comp:validate:completed</td>
+<td>{&quot;valid&quot;: true, &quot;errors&quot;: []}</td>
+<td>Each component emit a <strong>comp:validate:completed</strong> event once the validation logic has been executed. The event body can be used to determine if validation was successful and if not which where the errors.</td>
+</tr>
 </tbody>
 </table>
 <h1>Validation</h1><p>Each component will intercept validation events triggered by the underlining model. Every error is handled implicitly 
@@ -125,7 +135,7 @@ and displayed to user in a unified way. For more information about model validat
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line34">line 34</a>
+        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -225,7 +235,7 @@ and displayed to user in a unified way. For more information about model validat
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line65">line 65</a>
+        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -331,7 +341,7 @@ convenient for one way data binding algorithm.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line74">line 74</a>
+        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -414,7 +424,7 @@ can implement this method in order to provide custom validation logic.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line110">line 110</a>
+        <a href="factories_component.js.html">factories/component.js</a>, <a href="factories_component.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -495,13 +505,13 @@ can implement this method in order to provide custom validation logic.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.RestApiModel.html">RestApiModel</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components.TextField.html">TextField</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.RestApiModel.html">RestApiModel</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Wed Jun 10 2015 15:50:43 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Mon Jun 15 2015 10:42:28 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

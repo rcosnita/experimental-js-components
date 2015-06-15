@@ -52,7 +52,8 @@
 
 <div class="description">
     <p>This class provides a special model which can integrate external data using rest apis.</p>
-<h1>Model events</h1><h1>Examples</h1><p>This model is extremely useful for injecting data from external sources into components belonging to the framework.</p>
+<h1>Model events</h1><p>This model supports all events inherited from <a href="UI_Components_Models.Model.html">UI/Components/Models.Model</a>.</p>
+<h1>Examples</h1><p>This model is extremely useful for injecting data from external sources into components belonging to the framework.</p>
 <h2>Display customers into a grid</h2><p>Let's assume we have a customers api which returns customers belonging to an online store:</p>
 <pre class="prettyprint source lang-json"><code>[
 ...
@@ -64,15 +65,11 @@
 ...
 ]</code></pre><p>Below you can find a simple example of how that api list data can be easily displayed in a datagrid component. 
 Grid columns can be automatically ordered using the api.</p>
-<pre class="prettyprint source lang-javascript"><code>define([&quot;factories/model!simple_model&quot;, &quot;factories/model!rest_model&quot;], function(SimpleModel, RestModel) {
+<pre class="prettyprint source lang-javascript"><code>define([&quot;factories/model!simple_model&quot;, 
+     &quot;factories/model!rest_model:customers:v3:/webresources/api/v3/sites/current/customers&quot;], 
+function(SimpleModel, customersModel) {
 
- function App() { 
-     this._customersModel = new RestModel({
-         &quot;url&quot;: &quot;/webresources/api/v3/sites/current/customers&quot;,
-         &quot;name&quot;: &quot;customers&quot;,
-         &quot;version&quot;: &quot;v3&quot;
-     });
- };
+ function App() { };
 
  App.prototype.configure = function() {
      var gridModel = new SimpleModel({
@@ -82,7 +79,7 @@ Grid columns can be automatically ordered using the api.</p>
              {&quot;id&quot;: &quot;lastName&quot;, &quot;name&quot;: &quot;Customer last name&quot;},
              {&quot;id&quot;: &quot;customer.address.street&quot;, &quot;name&quot;: &quot;Address street&quot;}
          ],
-         &quot;items&quot;: this._customersModel
+         &quot;items&quot;: customersModel
      });
 
      return {
@@ -96,7 +93,7 @@ Grid columns can be automatically ordered using the api.</p>
  };
 
  App.prototype.start = function() {
-     this._customersModel.trigger(&quot;model:init&quot;, {});
+     customersModel.trigger(&quot;model:init&quot;, {});
  };
 
  return App;
@@ -288,7 +285,7 @@ Grid columns can be automatically ordered using the api.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_rest_model.js.html">models/rest_model.js</a>, <a href="models_rest_model.js.html#line79">line 79</a>
+        <a href="models_rest_model.js.html">models/rest_model.js</a>, <a href="models_rest_model.js.html#line77">line 77</a>
     </li></ul></dd>
     
 
@@ -342,6 +339,171 @@ Grid columns can be automatically ordered using the api.</p>
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="_wireFilteringEvent"><span class="type-signature"></span>_wireFilteringEvent<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>This method is used to wire filtering events to this model.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_rest_model.js.html">models/rest_model.js</a>, <a href="models_rest_model.js.html#line122">line 122</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="_wireInitEvents"><span class="type-signature"></span>_wireInitEvents<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>This method wires the initialization event. Initialization event triggers an ajax request for obtaining the actual data.
+Once it finishes loading the data it notifies all subscribers about the completed state.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_rest_model.js.html">models/rest_model.js</a>, <a href="models_rest_model.js.html#line101">line 101</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
             
@@ -453,7 +615,7 @@ Grid columns can be automatically ordered using the api.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line106">line 106</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line108">line 108</a>
     </li></ul></dd>
     
 
@@ -506,16 +668,11 @@ Grid columns can be automatically ordered using the api.</p>
 
     
 
-    <h4 class="name" id="getData"><span class="type-signature">(abstract) </span>getData<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="getData"><span class="type-signature"></span>getData<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
-
-<div class="description">
-    <p>This method must be overriden by each concrete model in order to provide a way to obtain underlining data
-from the current model.</p>
-</div>
 
 
 
@@ -536,8 +693,10 @@ from the current model.</p>
     
 
     
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
         <a href="UI_Components_Models.Model.html#getData">UI/Components/Models.Model#getData</a>
     </li></ul></dd>
     
@@ -559,11 +718,9 @@ from the current model.</p>
     
 
     
-
-    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line53">line 53</a>
+        <a href="models_rest_model.js.html">models/rest_model.js</a>, <a href="models_rest_model.js.html#line93">line 93</a>
     </li></ul></dd>
     
 
@@ -590,22 +747,11 @@ from the current model.</p>
 
         
 <div class="param-desc">
-    <p>the current loaded data set or a promise which will be resolved to model data.</p>
+    <p>[JSON] A json object containing the items array and total items count available within the current model.
+Not all data is actually available in this model.</p>
 </div>
 
 
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Object</span>
-
-
-    </dd>
-</dl>
 
     
 
@@ -672,7 +818,7 @@ from the current model.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line116">line 116</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line118">line 118</a>
     </li></ul></dd>
     
 
@@ -832,7 +978,7 @@ use this instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line88">line 88</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line90">line 90</a>
     </li></ul></dd>
     
 
@@ -919,7 +1065,7 @@ use this instance.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line77">line 77</a>
+        <a href="factories_model.js.html">factories/model.js</a>, <a href="factories_model.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -999,13 +1145,13 @@ use this instance.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.RestApiModel.html">RestApiModel</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="UI_Components.Button.html">Button</a></li><li><a href="UI_Components.Component.html">Component</a></li><li><a href="UI_Components.DataGrid.html">DataGrid</a></li><li><a href="UI_Components.DropDown.html">DropDown</a></li><li><a href="UI_Components.TextField.html">TextField</a></li><li><a href="UI_Components_Apps.App.html">App</a></li><li><a href="UI_Components_Models.Model.html">Model</a></li><li><a href="UI_Components_Models.RestApiModel.html">RestApiModel</a></li><li><a href="UI_Components_Models.SimpleModel.html">SimpleModel</a></li><li><a href="UI_Components_Views.View.html">View</a></li></ul><h3>Namespaces</h3><ul><li><a href="UI_Components.html">UI/Components</a></li><li><a href="UI_Components_Apps.html">UI/Components/Apps</a></li><li><a href="UI_Components_Constants.html">UI/Components/Constants</a></li><li><a href="UI_Components_Models.html">UI/Components/Models</a></li><li><a href="UI_Components_Views.html">UI/Components/Views</a></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-create-first-app.html">Create your first application</a></li><li><a href="tutorial-create-new-components.html">Create new framework components</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Wed Jun 10 2015 15:50:43 GMT+0300 (EEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.1</a> on Mon Jun 15 2015 10:42:28 GMT+0300 (EEST)
 </footer>
 
 <script> prettyPrint(); </script>

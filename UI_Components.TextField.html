@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DropDown</title>
+    <title>JSDoc: Class: TextField</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DropDown</h1>
+    <h1 class="page-title">Class: TextField</h1>
 
     
 
@@ -31,7 +31,7 @@
         <h2>
             <span class="ancestors"><a href="UI_Components.html">UI/Components</a>.</span>
         
-        DropDown
+        TextField
         </h2>
         
     
@@ -44,96 +44,44 @@
 
     
 
-    <h4 class="name" id="DropDown"><span class="type-signature"></span>new DropDown<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="TextField"><span class="type-signature"></span>new TextField<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <h1>Summary</h1><p>Dropdown component allows developer to display various items and selected them.</p>
-<h1>Events</h1><table>
-<thead>
-<tr>
-<th>Event name</th>
-<th>Event body</th>
-<th>Event description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>dd:selected-item</td>
-<td>Model object representing selected item.</td>
-<td>Triggered whenever a dropdown item is selected.</td>
-</tr>
-</tbody>
-</table>
-<h1>Model events</h1><table>
-<thead>
-<tr>
-<th>Event name</th>
-<th>Event body</th>
-<th>Event description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>model:change</td>
-<td>{&quot;property&quot;: &quot;title&quot;}</td>
-<td>Whenever the model sends a title change event the dropdown component updates the title.</td>
-</tr>
-</tbody>
-</table>
-<h1>Examples</h1><pre class="prettyprint source lang-html"><code>&lt;!-- &lt;custom_app>/views/index.html -->
-&lt;!DOCTYPE html>
+    <h1>Summary</h1><p>Textfield provides a simple input which accepts data from keyboard. It binds the value to the given model.
+In order to be notified about this component internal state change it's enough to listen on model changes.</p>
+<h1>Examples</h1><h2>Display latest value from textfield (while user types)</h2><pre class="prettyprint source lang-javascript"><code>// this example assumes the component is configured correctly and binded to model tfModel.
 
-&lt;html>
-    &lt;head>
-        &lt;title>Welcome to dropdown sample application.&lt;/title>
-    &lt;/head>
+function App() {
+    this._filterModel = new SimpleModel({
+        &quot;placeholder&quot;: &quot;Type your query here ...&quot;,
+        &quot;value&quot;: &quot;&quot;
+    });
+};
 
-    &lt;body>
-        &lt;div data-sid=&quot;app&quot;> 
-            &lt;div data-comp-sid=&quot;dd-sample&quot; data-comp-type=&quot;dropdown&quot;>&lt;/div>
-        &lt;/div>
-    &lt;/body>
-&lt;/html></code></pre><pre class="prettyprint source lang-javascript"><code>// &lt;custom_app>/controllers/index.js
-define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], function(SimpleModel, Constants) {
-    function App() { };
-
-    App.prototype.configure = function() {
-        return {
-            &quot;selector&quot;: &quot;div[data-sid='app']&quot;,
-            &quot;components&quot;: {
-                &quot;dd-task-types&quot;: {
-                    &quot;model&quot;: new SimpleModel({
-                        &quot;title&quot;: &quot;Sample dropdown&quot;,
-                        &quot;items&quot;: [
-                            {&quot;name&quot;: &quot;Work task&quot;, &quot;value&quot;: 1, &quot;attr1&quot;: &quot;Attribute 1 of work task.&quot;},
-                            {&quot;name&quot;: &quot;Personal task&quot;, &quot;value&quot;: 2, &quot;attr1&quot;: &quot;Attribute 2 of personal task.&quot;}
-                        ]
-                    }),
-                    &quot;valueName&quot;: &quot;value&quot;,
-                    &quot;textName&quot;: &quot;name&quot;
-                }
-            }
-        };
+App.prototype.configure = function() {
+    return {
+        &quot;selector&quot;: &quot;div[data-sid='sample-app']&quot;,
+        &quot;components&quot;: {
+             &quot;tfQuickSearch&quot;: {
+                        &quot;model&quot;: this._filterModel
+                    },
+        }
     };
+};
 
-    App.prototype.start = function() {
-        this._wireDdTaskTypesEvents();
-    };
+App.prototype.start = function() {
+    this._filterModel.on(&quot;model:change&quot;, function(evt) {
+        if (evt.property != &quot;value&quot;) {
+            return;
+        }
 
-    App.prototype._wireDdTaskTypesEvents = function() {
-        var ddTaskTypes = this.components[&quot;dd-sample&quot;];
-
-        ddTaskTypes.on(&quot;dd:selected-item&quot;, function(model) {
-            console.log(model);
-        });
-    };
-
-    return App;
-});</code></pre>
+        console.log(evt.newValue);
+    });
+};</code></pre>
 </div>
 
 
@@ -177,7 +125,7 @@ define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_dropdown_controllers_dropdown.js.html">components/dropdown/controllers/dropdown.js</a>, <a href="components_dropdown_controllers_dropdown.js.html#line84">line 84</a>
+        <a href="components_textfield_controllers_textfield.js.html">components/textfield/controllers/textfield.js</a>, <a href="components_textfield_controllers_textfield.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -237,14 +185,14 @@ define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], 
 
     
 
-    <h4 class="name" id="configure"><span class="type-signature"></span>configure<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="configure"><span class="type-signature"></span>configure<span class="signature">()</span><span class="type-signature"> &rarr; {JSON}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p>This method is automatically invoked by the framework in order to give the component a chance to configure itself.</p>
+    <p>This method is invoked automatically by the framework in order to configure the textfield.</p>
 </div>
 
 
@@ -293,7 +241,7 @@ define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_dropdown_controllers_dropdown.js.html">components/dropdown/controllers/dropdown.js</a>, <a href="components_dropdown_controllers_dropdown.js.html#line93">line 93</a>
+        <a href="components_textfield_controllers_textfield.js.html">components/textfield/controllers/textfield.js</a>, <a href="components_textfield_controllers_textfield.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -320,7 +268,7 @@ define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], 
 
         
 <div class="param-desc">
-    <p>dropdown configuration containing only the view used for rendering.</p>
+    <p>Textfield synchronous configuration.</p>
 </div>
 
 
@@ -331,7 +279,7 @@ define([&quot;factories/model!simple_model&quot;, &quot;utils/constants&quot;], 
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">JSON</span>
 
 
     </dd>
@@ -441,7 +389,7 @@ convenient for one way data binding algorithm.</p>
 
 
 <div class="description">
-    <p>This method implements the logic executed when the component is fully started.</p>
+    <p>This method binds the events on the textfield dom element and set the values on the underlining model accordingly.</p>
 </div>
 
 
@@ -485,7 +433,7 @@ convenient for one way data binding algorithm.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_dropdown_controllers_dropdown.js.html">components/dropdown/controllers/dropdown.js</a>, <a href="components_dropdown_controllers_dropdown.js.html#line105">line 105</a>
+        <a href="components_textfield_controllers_textfield.js.html">components/textfield/controllers/textfield.js</a>, <a href="components_textfield_controllers_textfield.js.html#line69">line 69</a>
     </li></ul></dd>
     
 

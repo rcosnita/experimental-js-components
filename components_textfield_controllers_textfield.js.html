@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: models/simple_model.js</title>
+    <title>JSDoc: Source: components/textfield/controllers/textfield.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: models/simple_model.js</h1>
+    <h1 class="page-title">Source: components/textfield/controllers/textfield.js</h1>
 
     
 
@@ -26,66 +26,85 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>define(["utils/constants"], function(Constants) {
+            <pre class="prettyprint source linenums"><code>define(["jquery", "factories/view!textfield:index.html", "utils/constants"], function($, view, Constants) {
     /**
-     * This model provides a simple wrapper over a json object.
+     * # Summary
      *
-     * # Model events
-     *
-     * This model does not provide any additional events. For seeing inherited events vist {@link UI/Components/Models.Model}
+     * Textfield provides a simple input which accepts data from keyboard. It binds the value to the given model.
+     * In order to be notified about this component internal state change it's enough to listen on model changes.
      *
      * # Examples
      *
-     * In order to use a simple model you can easily inject it in your code using the example below:
+     * ## Display latest value from textfield (while user types)
      *
      * ```javascript
-     * define(["factories/model!simple_model"], function(SimpleModel) {
-     *     var model = new SimpleModel({"firstName": "Radu", "lastName": "Cosnita"});
+     * // this example assumes the component is configured correctly and binded to model tfModel.
      *
-     *     model.on("model:change", function(evt) {
-     *         console.log(evt);
+     * function App() {
+     *     this._filterModel = new SimpleModel({
+     *         "placeholder": "Type your query here ...",
+     *         "value": ""
      *     });
+     * };
+     * 
+     * App.prototype.configure = function() {
+     *     return {
+     *         "selector": "div[data-sid='sample-app']",
+     *         "components": {
+     *              "tfQuickSearch": {
+                        "model": this._filterModel
+                    },
+     *         }
+     *     };
+     * };
+     * 
+     * App.prototype.start = function() {
+     *     this._filterModel.on("model:change", function(evt) {
+     *         if (evt.property != "value") {
+     *             return;
+     *         }
      *
-     *     model.set("firstName", "Radu Viorel");
-     * });
+     *         console.log(evt.newValue);
+     *     });
+     * };
      * ```
      * 
      * @public
      * @class
      * @constructor
-     * @memberof UI/Components/Models
-     * @extends UI/Components/Models.Model
+     * @memberof UI/Components
+     * @extends UI/Components.Component
      */
-    function SimpleModel(json) {
-        this._json = json || {};
+    function TextField() { };
 
-        this.__wireCommonEvents
-        this._wireEvents();
+    /**
+     * This method is invoked automatically by the framework in order to configure the textfield.
+     * 
+     * @return {JSON} Textfield synchronous configuration.
+     */
+    TextField.prototype.configure = function() {
+        return {
+            "view": view
+        }
     };
 
     /**
-     * This method returns the current loaded data belonging to the model.
+     * This method binds the events on the textfield dom element and set the values on the underlining model accordingly.
+     *
      * @public
      * @method
      */
-    SimpleModel.prototype.getData = function() {
-        return this._json;
+    TextField.prototype.start = function() {
+        var tfParent = $(this.config.view.element),
+            textfield = $(tfParent.find("> [data-sid='textfield']")),
+            model = this.config.model;
+
+        textfield.keyup(function(evt) {
+            model.set("value", textfield.val());
+        });
     };
 
-    /**
-     * This method wires all required events for being able to communicate with the model.
-     * @private
-     * @method
-     */
-    SimpleModel.prototype._wireEvents = function() {
-        var self = this;
-
-        this.on(Constants.MODEL_INIT_EVENT, function() {
-            self.trigger(Constants.MODEL_INIT_COMPLETED_EVENT, self._json);
-        });        
-    };
-
-    return SimpleModel;
+    return TextField;
 });</code></pre>
         </article>
     </section>
