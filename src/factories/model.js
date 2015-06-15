@@ -161,10 +161,25 @@ define(["jquery", "eventemitter", "utils/constants"],
      * define(["factories/model!simple_model"], function(SimpleModel) { });
      */
     ModelPlugin.prototype.load = function(name, req, onload, config) {
-        var modelPath = "models/" + name;
+        var nameParts = name.split(":"),
+            fileName = nameParts[0],
+            name = nameParts[1],
+            version = nameParts[2],
+            url = nameParts[3],
+            modelPath = "models/" + fileName;
 
         req([modelPath], function(ModelCls) {
             $.extend(ModelCls.prototype, Model.prototype);
+
+            if (url && version) {
+                onload(new ModelCls({
+                    "url": url,
+                    "name": name,
+                    "version": version
+                }));
+
+                return;
+            }
 
             onload(ModelCls);
         });

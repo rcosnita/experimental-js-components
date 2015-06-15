@@ -1,5 +1,7 @@
-define(["factories/model!simple_model", "factories/model!rest_model", "utils/constants"], 
-    function(SimpleModel, RestModel, Constants) {
+define(["factories/model!simple_model", 
+    "factories/model!rest_model:customers:v3:../customers.json", 
+    "utils/constants"], 
+    function(SimpleModel, customersModel, Constants) {
     /**
      * This class provides the controller for quick search application. The goal of this app is to show
      * how to add datagrid quick filtering based on a textbox input component.
@@ -8,12 +10,6 @@ define(["factories/model!simple_model", "factories/model!rest_model", "utils/con
      * @public
      */
     function QuickSearchApp() { 
-        this._customersModel = new RestModel({
-            "url": "../customers.json",
-            "name": "customers",
-            "version": "v3"
-        });
-
         this._filterModel = new SimpleModel({
             "value": "",
             "placeholder": "Type your search here."
@@ -37,7 +33,7 @@ define(["factories/model!simple_model", "factories/model!rest_model", "utils/con
                             {"id": "firstName", "name": "First name"},
                             {"id": "lastName", "name": "Last name"}
                         ],
-                        "items": this._customersModel
+                        "items": customersModel
                     })
                 }
             }
@@ -55,7 +51,7 @@ define(["factories/model!simple_model", "factories/model!rest_model", "utils/con
                 return;
             }
 
-            self._customersModel.trigger(Constants.MODEL_INIT_FILTER_EVENT, {"firstName": evt.newValue});
+            customersModel.trigger(Constants.MODEL_INIT_FILTER_EVENT, {"firstName": evt.newValue});
         });
     };
 
