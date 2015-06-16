@@ -14,6 +14,8 @@ define(["jquery", "factories/view!form!index.html"], function($, view) {
      * form:validate | | This event can be triggered by a form consumer in order to start form validation.
      * form:validate:completed | form model populated with values | This event is emitted by the form whenever the validation phase is finished.
      * form:submit:completed | form newly created model | This event is emitted by the form immediately after submit phase has been completed successfully.
+     *
+     * In addition to above mentioned events, component inherited events are also available: {@link UI/Components.Component}
      * 
      *
      * # Example
