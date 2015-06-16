@@ -18,7 +18,7 @@ define(["jquery", "factories/view!form!index.html"], function($, view) {
      *
      * # Example
      *
-     * ## Simple form for creating a new customer
+     * ## Create a new customer form
      *
      * ```html
      * <div data-sid="sample-app">
