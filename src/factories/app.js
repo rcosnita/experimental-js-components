@@ -154,9 +154,9 @@ define(["jquery", "utils/constants"], function($, Constants) {
      */
     AppPlugin.prototype.load = function(name, req, onload, config) {
         req([name], function(LoadedApp) {
-            $.extend(LoadedApp.prototype, App.prototype);
+            $.extend(typeof LoadedApp !== "function" ? LoadedApp : LoadedApp.prototype, App.prototype);
 
-            app = new LoadedApp();
+            var app = typeof LoadedApp !== "function" ? LoadedApp : new LoadedApp();
 
             $(document).ready(function() {
                 var loadersPromise = app._bindRootContext(req),
