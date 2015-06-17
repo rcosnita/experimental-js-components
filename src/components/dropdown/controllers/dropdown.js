@@ -1,4 +1,4 @@
-define(["jquery", "factories/view!dropdown:index.html", "utils/constants"], function($, view, Constants) {
+define(["jquery", "factories/view!dropdown:index.html", "utils/constants", "bootstrap"], function($, view, Constants) {
     /**
      * # Summary
      * 

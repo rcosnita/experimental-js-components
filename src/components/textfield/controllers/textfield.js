@@ -1,4 +1,5 @@
-define(["jquery", "factories/view!textfield:index.html", "utils/constants"], function($, view, Constants) {
+define(["jquery", "factories/view!textfield:index.html", "utils/constants", "bootstrap"],
+    function($, view, Constants) {
     /**
      * # Summary
      *
@@ -73,6 +74,14 @@ define(["jquery", "factories/view!textfield:index.html", "utils/constants"], fun
 
         textfield.keyup(function(evt) {
             model.set("value", textfield.val());
+        });
+
+        model.on("model:change", function(evt) {
+            if (evt.property !== "value") {
+                return;
+            }
+
+            textfield.val(evt.newValue);
         });
     };
 

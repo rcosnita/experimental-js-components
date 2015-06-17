@@ -1,4 +1,4 @@
-define(["jquery", "factories/view!datagrid:index.html", "factories/model!simple_model", "utils/constants", "jquery-ui"], 
+define(["jquery", "factories/view!datagrid:index.html", "factories/model!simple_model", "utils/constants", "jquery-ui", "bootstrap"], 
     function($, view, SimpleModel, Constants) {
     /**
      * # Summary

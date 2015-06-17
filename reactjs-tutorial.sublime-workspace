@@ -1,0 +1,882 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"MODEL_INIT",
+				"MODEL_INIT_COMPLETED_EVENT"
+			],
+			[
+				"COMPONENT_VALI",
+				"COMPONENT_VALIDATE_COMPLETED_EVENT"
+			],
+			[
+				"compLoad",
+				"compLoadersPromise"
+			],
+			[
+				"hasA",
+				"hasAttribute(${0:attrName})	Element"
+			],
+			[
+				"jqueyr",
+				"jquery-ui"
+			],
+			[
+				"Pareme",
+				"ParameterValue"
+			],
+			[
+				"eu",
+				"eu-west-1b"
+			],
+			[
+				"vpcNat",
+				"vpcNatNetwork"
+			],
+			[
+				"Parame",
+				"ParameterValue"
+			],
+			[
+				"vpcP",
+				"vpcPublicSg"
+			],
+			[
+				"Param",
+				"ParameterValue"
+			],
+			[
+				"vpcInte",
+				"vpcInternalSg"
+			],
+			[
+				"PAram",
+				"ParameterValue"
+			],
+			[
+				"Paramete",
+				"ParameterKey"
+			],
+			[
+				"par",
+				"partition	forflow"
+			],
+			[
+				"start",
+				"startswith"
+			],
+			[
+				"num",
+				"num_of_threads"
+			],
+			[
+				"save",
+				"save_tofile	function"
+			],
+			[
+				"Enwi",
+				"EnwikctionaryAbstractParser	class"
+			],
+			[
+				"write",
+				"writelines	function"
+			],
+			[
+				"wi",
+				"wiktionary"
+			],
+			[
+				"partiti",
+				"partition_id	param"
+			],
+			[
+				"partit",
+				"partition_start	statement"
+			],
+			[
+				"ab",
+				"abstract_content	param"
+			],
+			[
+				"part",
+				"partition_start	statement"
+			],
+			[
+				"partition",
+				"partitions_limit	statement"
+			],
+			[
+				"abstract",
+				"abstract_content	statement"
+			],
+			[
+				"abs",
+				"abstract_content	statement"
+			],
+			[
+				"memory",
+				"memory_stream"
+			],
+			[
+				"read",
+				"readlines	function"
+			],
+			[
+				"abstrac",
+				"abstract_file	function"
+			],
+			[
+				"abstr",
+				"abstract_file	function"
+			],
+			[
+				"bui",
+				"build_words_toc	function"
+			],
+			[
+				"background",
+				"background-attachment"
+			],
+			[
+				"back",
+				"background-size"
+			],
+			[
+				"_bin",
+				"_bindBaseTrackingEvents"
+			],
+			[
+				"appl",
+				"apply(${0:thisArg})	Function"
+			],
+			[
+				"join",
+				"joined_email	statement"
+			],
+			[
+				"contact",
+				"contact_addr	statement"
+			],
+			[
+				"_smtp",
+				"_smtp	statement"
+			],
+			[
+				"_sm",
+				"_smtp_config	statement"
+			],
+			[
+				"welcom",
+				"welcome_email	statement"
+			],
+			[
+				"S",
+				"SmtpHelper	class"
+			],
+			[
+				"send",
+				"send_operational_email	function"
+			],
+			[
+				"SM",
+				"SMTP_SSL	class"
+			],
+			[
+				"smtp",
+				"smtplib	module"
+			],
+			[
+				"_SI",
+				"_SIGNUP_URL_EXISTING	statement"
+			],
+			[
+				"Trac",
+				"tracking_codes"
+			],
+			[
+				"email",
+				"email_address	param"
+			],
+			[
+				"Base",
+				"BASEMODEL	statement"
+			],
+			[
+				"databa",
+				"database_config	function"
+			],
+			[
+				"subresource",
+				"subresourceName"
+			],
+			[
+				"sampleResources",
+				"sampleResourcesSelection"
+			],
+			[
+				"bac",
+				"background-repeat"
+			],
+			[
+				"background-",
+				"background-image"
+			],
+			[
+				"sampleResource",
+				"sampleResources"
+			],
+			[
+				"_dis",
+				"_displayVersions"
+			],
+			[
+				"_displ",
+				"_displaySubresourceFields"
+			],
+			[
+				"_display",
+				"_displayResourceFields"
+			],
+			[
+				"Instruction",
+				"InstructionsController"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/disqus.html",
+			"settings":
+			{
+				"buffer_size": 499,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/src/tutorial.js",
+			"settings":
+			{
+				"buffer_size": 1482,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				"Syntax Check"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: Remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Anaconda: Run Current Test"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: install package",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Install Package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"Install Package",
+			"install package",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"package",
+			"install-package",
+			"install",
+			"install package MarkdownEditing",
+			"install package",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/extended/rcosnita/workspace_js_tutorials/reactjs",
+		"/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3",
+		"/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/src"
+	],
+	"file_history":
+	[
+		"/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/src/helloworld.js",
+		"/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/helloworld.html",
+		"/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/README.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/samples/textbox-gridfiltering/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/samples/textbox-gridfiltering/controllers/index.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/datagrid/views/index.html",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/index.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/tutorials/target-audience/target-audience.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/tutorials/create-first-app/create-first-app.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/tutorials/target-audience/target-audience.json",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/models/social_model.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/models/rest_model.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/samples/todo-app/controllers/index.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/form/controllers/form.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/datagrid/controllers/datagrid.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/samples/textbox-gridfiltering/customers.json",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/form/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/textfield/controllers/textfield.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/factories/model.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/utils/constants.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/samples/textbox-gridfiltering/app.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/factories/component.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/textfield/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/textfield/controllers/index.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/utils/handlebars.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/models/simple_model.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/dist/src/components/datagrid/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/samples/todo-app/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/Gruntfile.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/samples/todo-app/app.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/tutorials/create-new-components/create-new-components.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/app_config.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc/create-new-components/create-new-components.md",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/User/Side Bar.sublime-settings",
+		"/home/rcosnita/workspace_bc/experimental-js-components/jsdoc.json",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/images/readme.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/package.json",
+		"/home/rcosnita/workspace_bc/experimental-js-components/README.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc/create-first-app/create-first-app.md",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/factories/app.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/samples/todo-app/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/build.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/samples/todo-app/app.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/framework-build.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/dist/button/controllers/button.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/config.js",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/rcosnita/workspace_bc/experimental-js-components/dist/config.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/dropdown/controllers/dropdown.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/samples/todo-app/controllers/index.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/button/controllers/button.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/button/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/tutorials/create-new-components/create-new-components.json",
+		"/home/rcosnita/workspace_bc/experimental-js-components/publish-doc.sh",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/tutorials/create-first-app/create-first-app.json",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/tutorials/create-first-app/dropdown-unfolded.png",
+		"/home/rcosnita/workspace_bc/experimental-js-components/node_modules/ink-docstrap/template/publish.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/docstrap/template/publish.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/factories/view.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/dropdown/views/index.html",
+		"/home/rcosnita/workspace_bc/experimental-js-components/lib/microevent.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/doc-lib/docstrap/template/static/styles/site.flatly.css",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/User/jsdoc.sublime-build",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/User/SublimeOnSaveBuild.sublime-settings",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/SublimeOnSaveBuild/SublimeOnSaveBuild.sublime-settings",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/components/datagrid/views",
+		"/home/rcosnita/workspace_bc/experimental-js-components/lib/handlebars-3.0.3.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/lib/jquery-2.1.4.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/src/samples/todo-app/config.js",
+		"/home/rcosnita/workspace_bc/experimental-js-components/lib/require-2.1.17.js",
+		"/home/rcosnita/workspace_bc/launchpie-deploy/bootstrap-code-machine.sh",
+		"/home/rcosnita/workspace_bc/launchpie-deploy/create-prod-environment.sh",
+		"/home/rcosnita/workspace_bc/launchpie-deploy/README.md",
+		"/home/rcosnita/workspace_bc/launchpie-deploy/environment-stack.json",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/keywords_tool/parsers/enwiktionary.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/pip-deps/lib/python3.4/collections/__init__.py",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/User/Python3.last-run",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/Anaconda/Default (Linux).sublime-keymap",
+		"/extended/rcosnita/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/keywords_tool/parser/__init__.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/keywords_tool/parser/enwiktionary.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/keywords_tool/__init__.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/__init__.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/views/index.html",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/views/base.html",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/static/css/blog-optimizer.css",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/run_setup_db.sh",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/pip-deps/bin/activate",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/static/js/pages_analytics.js",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/static/js/theme.js",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/blogoptimizer-monit.cfg",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/views/misc/welcome_email.txt",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/docs/mocks/experiment1-message/mock-optimization/index.html",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/views/misc/new_user_joined_notification.txt",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/helpers/smtp_helper.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/views/misc/robots.txt",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/settings.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/fantastico/mvc/base_controller.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/helpers/__init__.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/pip-deps/lib/python3.4/site-packages/pip/_vendor/requests/models.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/sql/create_data.sql",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/views/join_trial_success.html",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/views/join_trial_alreadyexists.html",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/models/user_dummy.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/fantastico/mvc/model_facade.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/fantastico/mvc/models/model_filter.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/fantastico/routing_engine/custom_responses.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/README.md",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/run_prod_server.sh",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/deployment/conf/nginx/fantastico-wsgi",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/deployment/conf/nginx/fantastico-uwsgi.ini",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/generate_prod_conf.sh",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/sql/setup_database.sql",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/run_install_extensions.sh",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/frontend_pages.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/sql/module_setup.sql",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/pip-deps/lib/python3.4/site-packages/sqlalchemy/sql/sqltypes.py",
+		"/home/rcosnita/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/pip-deps/lib/python3.4/site-packages/sqlalchemy/sql/schema.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/static/css/stylish-portfolio.css",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/fantastico/mvc/controller_decorators.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/models/__init__.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/docs/mocks/experiment1-message/working-prototype/index.html",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/pip-deps/lib/python3.4/site-packages/webob/response.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/controllers/__init__.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/experiment1/frontend/__init__.py",
+		"/home/rcosnita/workspace_content_optimizer/content-optimizer/experiment1/fantastico/settings.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"},\n",
+			"_bindRootContext",
+			".config",
+			"staticFiles",
+			"COMPONENT_RELOAD_EVENT",
+			"_bindRootContext",
+			"console.log",
+			"\"\"",
+			"safetyAz",
+			"eu-west-1b",
+			"eu-west-1a",
+			"vpcPublicNetwork",
+			"igw",
+			"vpcPublicNetworkSafety",
+			".1.",
+			"vpcPublicNetwork",
+			"vpcPublicNetworkSafety",
+			"vpcPrefixIpPart",
+			"10.5",
+			"vpcPublicIp",
+			"\"Ref\": \"vpc\"",
+			"10.5.0",
+			"10.0",
+			"10.0.0",
+			"Nginx",
+			"vpcRouteTableInternet",
+			"public",
+			"s3ProvisionBucket",
+			"url",
+			"resourceFields",
+			"subresourceFields",
+			"sampleResources",
+			"displaySubresources",
+			"self",
+			"resourceId",
+			"updateGeneratorsData",
+			"displaySubresourceFields",
+			"getFieldsObject",
+			"fields",
+			"_selectAllFields",
+			"allFieldsSelected",
+			"selectAllFields",
+			"self._allFieldsSelected",
+			"this._allFieldsSelected",
+			"$scope.fields =",
+			"displayResourceFields",
+			"resourceFields",
+			"fields"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"this.$scope.allFieldsSelected"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/disqus.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 499,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								454,
+								454
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "/extended/rcosnita/workspace_js_tutorials/reactjs/react-0.13.3/src/tutorial.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1482,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								784,
+								784
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 171.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 191.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "reactjs-tutorial.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"index.html",
+				"samples/textbox-gridfiltering/views/index.html"
+			],
+			[
+				"index.js",
+				"samples/textbox-gridfiltering/controllers/index.js"
+			],
+			[
+				"rest_model",
+				"src/models/rest_model.js"
+			],
+			[
+				"form.js",
+				"src/components/form/controllers/form.js"
+			],
+			[
+				"customers",
+				"samples/textbox-gridfiltering/customers.json"
+			],
+			[
+				"data",
+				"src/components/datagrid/controllers/datagrid.js"
+			],
+			[
+				"textfie",
+				"src/components/textfield/controllers/textfield.js"
+			],
+			[
+				"constan",
+				"src/utils/constants.js"
+			],
+			[
+				"constants",
+				"src/utils/constants.js"
+			],
+			[
+				"app.",
+				"samples/textbox-gridfiltering/app.js"
+			],
+			[
+				"model",
+				"src/factories/model.js"
+			],
+			[
+				"componen",
+				"src/factories/component.js"
+			],
+			[
+				"simple",
+				"src/models/simple_model.js"
+			],
+			[
+				"handle",
+				"src/utils/handlebars.js"
+			],
+			[
+				"constant",
+				"src/utils/constants.js"
+			],
+			[
+				"crea",
+				"doc-lib/tutorials/create-new-components/create-new-components.md"
+			],
+			[
+				"create",
+				"doc/create-new-components/create-new-components.md"
+			],
+			[
+				"app.js",
+				"src/samples/todo-app/app.js"
+			],
+			[
+				"con",
+				"src/utils/constants.js"
+			],
+			[
+				"rest",
+				"src/models/rest_model.js"
+			],
+			[
+				"component",
+				"src/factories/component.js"
+			],
+			[
+				"model.js",
+				"src/factories/model.js"
+			],
+			[
+				"drop",
+				"src/components/dropdown/controllers/dropdown.js"
+			],
+			[
+				"simple_mo",
+				"src/models/simple_model.js"
+			],
+			[
+				"compon",
+				"src/factories/component.js"
+			],
+			[
+				"button",
+				"src/components/button/controllers/button.js"
+			],
+			[
+				"button.js",
+				"src/components/button/controllers/button.js"
+			],
+			[
+				"constn",
+				"src/utils/constants.js"
+			],
+			[
+				"consta",
+				"src/utils/constants.js"
+			],
+			[
+				"base.html",
+				"experiment1/experiment1/frontend/views/base.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 33.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ModelFacade",
+				"ModelFacade"
+			],
+			[
+				"ModelFilter",
+				"ModelFilter"
+			],
+			[
+				"UserDummy",
+				"UserDummy"
+			],
+			[
+				"Redi",
+				"RedirectResponse"
+			]
+		],
+		"width": 631.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 260.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
